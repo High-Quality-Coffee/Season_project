@@ -1,0 +1,60 @@
+.card.service-tab
+    .d-flex.justify-content-between.align-items-center
+        .title PROFILE
+    .py-2
+        // .d-flex.mb-2
+            .th.text-uppercase.text-muted principle name
+            .d-flex
+                .form-selectgroup
+                    label.form-selectgroup-item.w-25
+                        // input#id.form-selectgroup-input(type="radio", [(ngModel)]="data.service_type", value="web")
+                        span.form-selectgroup-label.text-uppercase(for="web") {{data.name}}
+                .form-selectgroup
+                    label.form-selectgroup-item.w-25
+                        // input#kafe.form-selectgroup-input(type="radio", [(ngModel)]="data.service_type", value="kafe_ldap")
+                        span.form-selectgroup-label.text-uppercase(for="kafe") proin@coreen.or.kr
+        // .d-flex.mb-2
+            .th.text-uppercase.text-muted mail
+            .d-flex
+                .form-selectgroup
+                    label.form-selectgroup-item.w-25
+                        // input#id.form-selectgroup-input(type="radio", [(ngModel)]="data.service_type", value="web")
+                        span.form-selectgroup-label.text-uppercase(for="web") {{data.mail}}
+                // .form-selectgroup
+                    label.form-selectgroup-item.w-25
+                        // input#kafe.form-selectgroup-input(type="radio", [(ngModel)]="data.service_type", value="kafe_ldap")
+                        span.form-selectgroup-label.text-uppercase(for="kafe") ldap(kafe)
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted display name
+            .form-control {{data.display_name}}
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted affiliation
+            .form-control {{data.affiliation}}
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted created
+            .form-control {{data.created}}
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted modified
+            .form-control {{data.modified}}
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted UID
+            .form-control {{data.uid}}
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted password
+            input.form-control(type="text", [(ngModel)]="data.password")
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted authority
+            .d-flex
+                .form-selectgroup-label.col-3
+                    input.mr-2(type="radio", [(ngModel)]="data.authority", value="member")
+                    label.text-uppercase public
+                .form-selectgroup-label.col-3
+                    input.mr-2(type="radio", [(ngModel)]="data.authority", value="system_admin")
+                    label.text-uppercase private
+        .d-flex.mb-2
+            .th.text-uppercase.text-muted description
+            input.form-control(type="text", [(ngModel)]="data.description")
+    .d-flex.ml-auto.mt-3
+        .btn.btn-outline-warning.mr-2((click)="delete()") DELETE
+        .btn.btn-info.mr-2((click)="hide()") CANCEL
+        .btn.btn-primary((click)="save()") SAVE

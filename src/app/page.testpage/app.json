@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.testpage",
+    "title": "testPage",
+    "namespace": "testpage",
+    "viewuri": "/testPage",
+    "category": "",
+    "preview": "/testPage",
+    "ng.build": {
+        "id": "page.testpage",
+        "name": "PageTestpageComponent",
+        "path": "./page.testpage/page.testpage.component"
+    },
+    "ng": {
+        "selector": "wiz-page-testpage",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-testpage([title]=\"\")",
+    "controller": "base",
+    "layout": "layout.navbar"
+}

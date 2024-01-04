@@ -1,0 +1,24 @@
+.container
+    h2 NAVER
+    .login-wrapper
+        .howtologin
+        ul.menu_wrap(role='tablist')
+            li.menu_item(role='presentation')
+                a.menu_id#logId(role='tab' aria-selected='true')
+                    span.text ID 로그인
+            li.menu_item(role='presentation')
+                a.menu_disp#disposable(role='tab' aria-selected='true')
+                    span.text 일회용 번호
+            li.menu_item(role='presentation')
+                a.menu_qr#QRcode(role='tab' aria-selected='true')
+                    span.text QR코드
+        input(type='text' name='userName', placeholder="아이디")
+        input(type='password' name='userPassword' placeholder="비밀번호")
+        label(for='remember-check')
+            input#remember-check(type='checkbox')
+            span 로그인 상태 유지
+        input(type='submit' value='login')
+        .login
+        .findPw
+        .findId
+        
