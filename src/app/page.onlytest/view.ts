@@ -20,6 +20,7 @@ export class Component implements OnInit {
     // @Input text: string;
     // @Input favorite: boolean;
     // @Input newItem: string = '';
+ 
 
     public title: any;
     public text: string;
@@ -28,7 +29,7 @@ export class Component implements OnInit {
 
     public items: ListItem[] = [];
 
-    public async addItem(newItem) {
+    public async addItem(newItem: newItem) {
         if (this.newItem) {
             this.items.push({ text: this.newItem, favorite: false });
             console.log(items)
