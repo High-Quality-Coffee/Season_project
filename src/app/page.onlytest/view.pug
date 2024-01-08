@@ -1,10 +1,11 @@
+//input으로 텍스트를 받으면 ngmodel로 양방향 바인딩 후, items에 저장되고 
+//li태그가 증가하면서 클릭 시, 그 아이템에 대한 텍스트와 ngclass가 적용됨.
+
 .container
   ng-container
     input([(ngmodel)]='newItem' placeholder='Enter a new item')
-    button((click)='addItem()') Add
-
+    button((click)="addItem(newItem)") Add
+    
   ng-container(*ngif='items.length === 0') No items added yet!
-
-  ul
-    li(*ngfor='let item of items' [ngclass]="{'favorite-item': item.favorite}" (click)='toggleFavorite(item)')
-      {{ item.text }}
+    ul
+      li(*ngfor='let item of items', [ngclass]="{'favorite-item': item.favorite}", (click)='toggleFavorite(item)') {{ item.text }}

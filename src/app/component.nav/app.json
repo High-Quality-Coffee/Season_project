@@ -16,5 +16,6 @@
         ],
         "outputs": []
     },
-    "template": "wiz-component-nav([title]=\"\")"
+    "template": "wiz-component-nav([title]=\"\")",
+    "controller": ""
 }

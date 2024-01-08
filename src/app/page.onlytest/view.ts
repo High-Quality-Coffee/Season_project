@@ -1,5 +1,6 @@
-import { OnInit, Input, NgModule, FormsModule } from '@angular/core';
-import { Service } from '@wiz/libs/portal/season/service';
+import { OnInit, Input, NgModule, Component } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 
 export class Component implements OnInit {
@@ -15,21 +16,28 @@ export class Component implements OnInit {
     //     bootstrap: [AppComponent],
     // })
 
-    @Input() title: any;
-    @Input text: string;
-    @Input favorite: boolean;
-    @Input newItem: string = '';
+    // @Input() title: any;
+    // @Input text: string;
+    // @Input favorite: boolean;
+    // @Input newItem: string = '';
 
-    items: ListItem[] = [];
+    public title: any;
+    public text: string;
+    public favorite: boolean;
+    public newItem: string = '';
 
-    addItem() {
+    public items: ListItem[] = [];
+
+    public async addItem(newItem) {
         if (this.newItem) {
             this.items.push({ text: this.newItem, favorite: false });
+            console.log(items)
             this.newItem = '';
         }
     }
 
-    toggleFavorite(item: ListItem) {
+    public async toggleFavorite(item: ListItem) {
         item.favorite = !item.favorite;
     }
 }
+
