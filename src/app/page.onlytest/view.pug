@@ -1,0 +1,10 @@
+.container
+  ng-container
+    input([(ngmodel)]='newItem' placeholder='Enter a new item')
+    button((click)='addItem()') Add
+
+  ng-container(*ngif='items.length === 0') No items added yet!
+
+  ul
+    li(*ngfor='let item of items' [ngclass]="{'favorite-item': item.favorite}" (click)='toggleFavorite(item)')
+      {{ item.text }}

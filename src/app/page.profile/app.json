@@ -15,9 +15,14 @@
     "ng": {
         "selector": "wiz-page-profile",
         "inputs": [
-            "title"
+            "current",
+            "start",
+            "end",
+            "maxlength"
         ],
-        "outputs": []
+        "outputs": [
+            "pageMove"
+        ]
     },
-    "template": "wiz-page-profile([title]=\"\")"
+    "template": "wiz-page-profile([current]=\"\", [start]=\"\", [end]=\"\", [maxlength]=\"\", (pageMove)=\"\")"
 }

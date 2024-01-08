@@ -3,7 +3,8 @@
     form#login-form(method='post', action='서버의url')
         input(type='text' name='userName', placeholder='Email')
         input(type='password' name='userPassword' placeholder='Password')
-        label(for='remember-check')
-            input#remember-check(type='checkbox') 
-            span 아이디 저장하기test
+        .save-check
+          label(for='remember-check')
+              input#remember-check(type='checkbox') 
+              span 아이디 저장하기
         input(type='submit' value='Login')

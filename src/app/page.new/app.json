@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.new",
+    "title": "new",
+    "namespace": "new",
+    "viewuri": "/new",
+    "category": "",
+    "preview": "/new",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.new",
+        "name": "PageNewComponent",
+        "path": "./page.new/page.new.component"
+    },
+    "ng": {
+        "selector": "wiz-page-new",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-new([title]=\"\")"
+}

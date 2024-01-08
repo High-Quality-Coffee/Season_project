@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.onlytest",
+    "title": "onlytest",
+    "namespace": "onlytest",
+    "viewuri": "/onlytest",
+    "category": "",
+    "preview": "/onlytest",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.onlytest",
+        "name": "PageOnlytestComponent",
+        "path": "./page.onlytest/page.onlytest.component"
+    },
+    "ng": {
+        "selector": "wiz-page-onlytest",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-onlytest([title]=\"\")"
+}

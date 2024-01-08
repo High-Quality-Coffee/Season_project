@@ -20,7 +20,7 @@ body {
 .login-wrapper>h2 {
     font-size: 24px;
     color: #6A24FE;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 #login-form>input {
@@ -31,11 +31,9 @@ body {
     margin-bottom: 16px;
     border-radius: 6px;
     background-color: #F8f8f8;
+    border: solid;
 }
 
-#login-form>input::placeholder {
-    color: #D2D2D2;
-}
 
 #login-form>input[type="submit"] {
     color: #fff;
@@ -52,7 +50,7 @@ body {
     color: #999999;
 }
 
-#login-form input[type="checkbox"]+label+span{
+#login-form input[type="checkbox"]+label+span {
     cursor: pointer;
     padding-left: 26px;
     background-image: url("checkbox.png");
@@ -64,4 +62,10 @@ body {
     background-image: url("checkbox-active.png");
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.save-check>label>span {
+    margin-left: 10px;
+    font-size: 15px;
+    padding-bottom: 5px;
 }
