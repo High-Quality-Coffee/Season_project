@@ -1,6 +1,6 @@
 # Project_highqc24
 
-
+Season project in winter semester
 
 ## Getting started
 
