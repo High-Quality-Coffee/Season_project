@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.userresult",
+    "title": "UserResult",
+    "namespace": "userresult",
+    "viewuri": "/UserResult",
+    "category": "",
+    "preview": "/UserResult",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.userresult",
+        "name": "PageUserresultComponent",
+        "path": "./page.userresult/page.userresult.component"
+    },
+    "ng": {
+        "selector": "wiz-page-userresult",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-userresult([title]=\"\")"
+}
