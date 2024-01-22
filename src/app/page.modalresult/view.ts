@@ -20,7 +20,4 @@ export class Component implements OnInit {
         if (this.modal)
             this.modal.classList.add('hidden');
     }
-
-
-
 }

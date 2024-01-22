@@ -28,6 +28,10 @@ li.icon {
     padding: 20px;
 }
 
+li{
+    color: white;
+}
+
 a {
     display: block;
     text-align: center;
@@ -35,7 +39,7 @@ a {
     padding: .5rem 1rem;
     text-decoration: none;
     font-weight: bold;
-    color: white;
+    color: inherit;
     background: teal;
 }
 

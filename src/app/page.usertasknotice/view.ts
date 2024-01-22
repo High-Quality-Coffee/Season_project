@@ -5,4 +5,8 @@ export class Component implements OnInit {
 
     public async ngOnInit() {
     }
+
+    public async move() {
+        location.href = "/UserResult";
+    }
 }
