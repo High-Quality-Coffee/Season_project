@@ -10,8 +10,43 @@
                 a((click)="move()") 과제 확인
 
 
-.content-container
-    .contentNotice
-        h2.title Notice
+// .content-container
+//     .contentNotice
+//         h2.title Notice
     
 
+.w-100
+    wiz-component-first
+
+    .d-flex.justify-content-between(style="min-width:1200px")
+        div(style="min-width:980px;")
+            .card
+                .card-header.area-round.bg-blue
+                    h4.card-title.text-white {{ title }}
+                    .col-auto.ml-auto.d-print-none
+                    //ng-container(*ngIf="category==='notice'?service.auth.show('admin'):service.auth.show(true)")
+                    ng-container
+                        a.ml-2.btn.btn-sm.px-2.btn-white.text-blue(routerLink="/community/{{category}}/edit/new",) 작성하기
+                    
+                .card-body
+                    table.table.table-hover.board-table.box-shadow.br-10
+                        thead
+                            tr
+                                th.text-center.col-3.btlr 번호
+                                th.text-center 제목
+                                th.text-center.col-3 작성자
+                                th.text-center.col-3.btrr 등록일
+
+                        tbody
+                            tr(*ngIf="!list")
+                                td.p-6.text-center(colspan=5) 게시글이 없습니다.
+                            ng-container(*ngIf="list")
+                                tr(*ngFor="let item of list;let i = index")
+                                    td.text-center.col-3 {{ item.id }}
+                                    td
+                                        a.title.text-navy(routerLink="/community/{{category}}/view/{{item.id}}") {{item.title.length == 0 ? "제목없음" : item.title}}
+                                    td.text-center.col-3 {{ item.user.name}}
+                                    td.text-center.col-3 {{ item.created.substring(0,10) }}
+                    wiz-component-pagination([current]="page.current", [start]="page.start", [end]="page.end", (pageMove)="pageLoad($event)")
+
+    

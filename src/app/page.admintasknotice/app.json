@@ -15,10 +15,8 @@
     },
     "ng": {
         "selector": "wiz-page-admintasknotice",
-        "inputs": [
-            "title"
-        ],
+        "inputs": [],
         "outputs": []
     },
-    "template": "wiz-page-admintasknotice([title]=\"\")"
+    "template": "wiz-page-admintasknotice()"
 }
