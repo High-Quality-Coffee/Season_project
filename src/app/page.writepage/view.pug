@@ -1,0 +1,51 @@
+.d-flex.justify-content-between(style="min-width:1200px")
+    div(style="min-width:980px;")
+        .card
+            .card-header.area-round.bg-blue
+                h4.card-title.text-white((click)="go(post.category)") {{ title }}
+                .col-auto.ml-auto.d-print-none
+                    .d-flex.text-dark
+                        a.btn.btn-sm.px-2.btn-border.ml-2.d-none.d-sm-inline-block((click)="go(post.category)")
+                            i.mr-2.fas.fa-list
+                            | 목록
+
+                        a.btn.btn-sm.px-2.btn-border.ml-2.d-none.d-sm-inline-block(routerLink="/community/{{post.category}}/view/{{post.id}}", *ngIf="post.id")
+                            i.mr-2.fas.fa-eye
+                            | 게시글
+
+                        a.btn.btn-sm.px-2.btn-or.ml-2.d-none.d-sm-inline-block((click)="update()")
+                            i.mr-2.fas.fa-save
+                            span(*ngIf="post.id") 저장하기
+                            span(*ngIf="!post.id") 등록하기
+            .card-body
+                .info-form.row.first-child
+                    .col-md-2
+                        h4 제목
+                    .col-md-10
+                        input.form-control(type="text", placeholder="50자 이내 입력 가능", [(ngModel)]="post.title", required="")
+
+                .info-form.row
+                    .col-md-2
+                        h4 첨부파일
+                    .col-md-8
+                        form#file
+                            input#file-upload.form-control(type='file', name="file", multiple, (change)='upload($event)')
+
+                .info-form.row(*ngIf="post.files && post.files.length > 0")
+                    .col-md-2
+                    .col-md-10
+                        ul.m-0
+                            li(*ngFor="let file of post.files;let i = index")
+                                span {{file}}
+                                button.btn.btn-sm.btn-square.btn-danger.ml-1(style="padding: 0 4px;", (click)="delete_file(file)") X
+                
+                .editor-area.mt-4.mb-4
+                    textarea#editor([(ngModel)]="post.content")
+
+                .text-right
+                    button.btn.btn-border.pr-4.pl-4.ml-1(*ngIf="post.id", (click)="delete()") 삭제
+                    button.btn.btn-border.pr-4.pl-4.ml-1(*ngIf="!post.id", (click)="go(post.category)") 취소
+                    a.btn.btn-border.pr-4.pl-4.ml-1(*ngIf="post.id", routerLink="/community/{{post.category}}/view/{{post.id}}") 취소
+                    button.btn.btn-or.pr-4.pl-4.ml-1(*ngIf="post.id", (click)="update()") 저장
+                    button.btn.btn-or.pr-4.pl-4.ml-1(*ngIf="!post.id", (click)="update()") 등록
+
