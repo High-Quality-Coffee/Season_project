@@ -1,0 +1,29 @@
+.card.border-0.table-card.round-0.shadow-none.px-0
+            .table-responsive.round-0
+                table.table.table-center.table-nowrap.card-table
+                    thead
+                        tr
+                            th.text-uppercase(style="width: 16px;")
+                            th.text-uppercase 이름
+                            th.text-uppercase 제출
+                            th.text-uppercase.text-center 파일
+                            th.text-uppercase.text-center 합격/불합격
+                            th.text-uppercase.w-1
+                    tbody
+                        tr()
+                            td.text-center(colspan=6) 지원자가 없습니다.
+                            td.goodchoice 
+                            
+                                button#modalOpenButton(*ngIf="isShow", (click)="modal_remove()") 결과 선택
+                                button#modalOpenButton.acceptBtn(*ngIf="selected=='accept'", (click)="modal_remove()") 합격
+                                button#modalOpenButton.failBtn(*ngIf="selected=='fail'", (click)="modal_remove()") 탈락
+
+                            #modalContainer.hidden
+                                .modalContent
+                                    p 합격여부를 알려주세요
+                                    .YesOrNo
+                                        button.accept((click)="changeOption('accept')&& modal_add()") 합격
+                                        button.fail((click)="changeOption('fail') && modal_add()") 탈락
+                                        button.choiceAgain((click)="choiceAgain()") 초기화
+                                    button#modalCloseButton((click)="modal_add()") 닫기
+                            

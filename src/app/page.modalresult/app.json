@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.modalresult",
+    "title": "modal_result",
+    "namespace": "modalresult",
+    "viewuri": "/modal_result",
+    "category": "",
+    "preview": "/modal_result",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.modalresult",
+        "name": "PageModalresultComponent",
+        "path": "./page.modalresult/page.modalresult.component"
+    },
+    "ng": {
+        "selector": "wiz-page-modalresult",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-modalresult([title]=\"\")"
+}
