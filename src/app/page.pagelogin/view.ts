@@ -20,7 +20,7 @@ export class Component implements OnInit {
             location.href = "/UserTaskNotice"
 
 
-        await this.service.render();
+        //await this.service.render();
     }
 
 
