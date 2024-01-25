@@ -1,9 +1,3 @@
-// .header {
-//     margin: 0 auto;
-//     padding: 0 auto;
-//     height: 100px;
-// }
-
 h1 {
     display: inline-block;
     vertical-align: middle;
@@ -34,7 +28,7 @@ li.icon {
     padding: 20px;
 }
 
-li{
+li {
     color: white;
 }
 
@@ -48,8 +42,6 @@ a {
     color: inherit;
     background: teal;
 }
-
-
 
 a:hover {
     background: yellowgreen;
@@ -73,24 +65,102 @@ html {
     border: 1px solid #ccc;
 }
 
-.content-container {
-    position: relative;
-    width: 100%;
-    height: 50px;
+// .content-container {
+//     position: relative;
+//     width: 100%;
+//     height: 50px;
+// }
+
+// .contentNotice {
+//     position: absolute;
+//     top: 750%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     text-align: center;
+//     max-width: 90%;
+//     padding: 20px;
+//     box-sizing: border-box;
+//     background-color: #f0f0f0;
+//     border: 1px solid #ccc;
+//     width: 1200px;
+//     height: 500px;
+
+// }
+
+$highlight: #2D8BF8;
+
+.side {
+    position: absolute;
+    right: -170px;
+    top: 38px;
 }
 
-.contentNotice {
-    position: absolute;
-    top: 750%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    max-width: 90%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    width: 1200px;
-    height: 500px;
+.btn-login {
+    width: 78px;
+    height: 32px;
+    border: 1px solid $highlight;
+    border-radius: 99px;
+    opacity: 1;
+}
 
+.title {
+    width: 500px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.relation {
+    // border-top: 0.4px solid black;
+    height: 100%;
+    overflow: auto;
+
+    .active {
+        border-left: 2px outset $highlight;
+
+        a {
+            color: $highlight;
+        }
+    }
+}
+
+
+.accordion-body {
+    .d-flex {
+        >div {
+            flex: 1;
+        }
+    }
+}
+
+th {
+    text-align: center;
+    font-size: inherit !important;
+}
+
+.accordion-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--tblr-accordion-btn-padding-y) var(--tblr-accordion-btn-padding-x);
+    font-size: .875rem;
+    color: var(--tblr-accordion-btn-color);
+    text-align: left;
+    background-color: var(--tblr-accordion-btn-bg);
+    border: 0;
+    border-radius: 0;
+    overflow-anchor: none;
+    transition: var(--tblr-accordion-transition);
+}
+
+.third {
+    background-color: #F4F9FE;
+}
+
+.thirds {
+    &:hover {
+        background-color: $highlight;
+    }
 }

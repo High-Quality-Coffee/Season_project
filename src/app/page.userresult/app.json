@@ -15,10 +15,8 @@
     },
     "ng": {
         "selector": "wiz-page-userresult",
-        "inputs": [
-            "title"
-        ],
+        "inputs": [],
         "outputs": []
     },
-    "template": "wiz-page-userresult([title]=\"\")"
+    "template": "wiz-page-userresult()"
 }
