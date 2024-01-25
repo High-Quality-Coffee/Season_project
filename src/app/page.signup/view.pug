@@ -1,0 +1,53 @@
+.login-view
+    .div
+        .container
+            .card.join-card.mt-4
+                .card-body.py-5
+                    .form-group.mb-3
+                        .underline-text-input-group
+                            input#id.underline-text-input-field(
+                                type="text", 
+                                placeholder="아이디를 입력하세요", 
+                                autocomplete="off", 
+                                [(ngModel)]="data.id")
+                            label.underline-text-input-label 아이디
+
+                        .underline-text-input-group.mt-3
+                            input#password.underline-text-input-field(
+                                type="password", 
+                                placeholder="비밀번호를 입력하세요", 
+                                autocomplete="off", 
+                                [(ngModel)]="data.password")
+                            label.underline-text-input-label 비밀번호
+
+                        .underline-text-input-group.mt-3
+                            input#password2.underline-text-input-field(
+                                type="password", 
+                                placeholder="비밀번호를 한번 더 입력하세요", 
+                                autocomplete="off", 
+                                [(ngModel)]="data.password2")
+                            label.underline-text-input-label 비밀번호 확인
+                            small.text-warning(*ngIf="status") 비밀번호가 일치하지 않습니다.
+
+                        .underline-text-input-group.mt-3
+                            input#name.underline-text-input-field(
+                                type="text", 
+                                placeholder="이름을 입력하세요", 
+                                autocomplete="off", 
+                                (keyup.enter)="login()",
+                                [(ngModel)]="data.name")
+                            label.underline-text-input-label 이름
+
+                        .underline-text-input-group.mt-3
+                            input#mail.underline-text-input-field(
+                                type="input", 
+                                placeholder="이메일", 
+                                autocomplete="off", 
+                                [(ngModel)]="data.email")
+                            label.underline-text-input-label 이메일
+                    .mt-4.text-center
+                        button.btn.btn-blue.btn-block((click)="submit()") 회원가입
+                    
+                    .mt-2.text-center
+                        span.text-muted.mr-2 이미 회원이신가요?
+                        a.text-muted(routerLink="/login") 로그인 하러가기

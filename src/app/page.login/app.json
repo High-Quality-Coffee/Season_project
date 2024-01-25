@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.login",
+    "title": "login",
+    "namespace": "login",
+    "viewuri": "/login",
+    "category": "",
+    "preview": "/login",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.login",
+        "name": "PageLoginComponent",
+        "path": "./page.login/page.login.component"
+    },
+    "ng": {
+        "selector": "wiz-page-login",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-login([title]=\"\")"
+}

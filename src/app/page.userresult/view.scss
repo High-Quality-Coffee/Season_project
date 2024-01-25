@@ -1,0 +1,48 @@
+.ck-editor__editable {
+    min-height: 200px;
+}
+
+.side {
+    position: absolute;
+    right: -170px;
+    top: 38px;
+}
+
+.relation {
+    // border-top: 0.4px solid black;
+    height: 100%;
+    overflow: auto;
+
+    .active {
+        border-left: 2px outset #2D8BF8;
+
+        a {
+            color: #2D8BF8;
+        }
+    }
+}
+
+.accordion-body {
+    .d-flex {
+        >div {
+            flex: 1;
+        }
+    }
+}
+
+
+.accordion-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--tblr-accordion-btn-padding-y) var(--tblr-accordion-btn-padding-x);
+    font-size: .875rem;
+    color: var(--tblr-accordion-btn-color);
+    text-align: left;
+    background-color: var(--tblr-accordion-btn-bg);
+    border: 0;
+    border-radius: 0;
+    overflow-anchor: none;
+    transition: var(--tblr-accordion-transition);
+}

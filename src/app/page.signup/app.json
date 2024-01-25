@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.signup",
+    "title": "signup",
+    "namespace": "signup",
+    "viewuri": "/signup",
+    "category": "",
+    "preview": "/signup",
+    "controller": "base",
+    "ng.build": {
+        "id": "page.signup",
+        "name": "PageSignupComponent",
+        "path": "./page.signup/page.signup.component"
+    },
+    "ng": {
+        "selector": "wiz-page-signup",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-signup()",
+    "layout": "layout.navbar"
+}

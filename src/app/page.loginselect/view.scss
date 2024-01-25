@@ -4,14 +4,22 @@
     height: 100vh;
 }
 
-.selectBtn {
+.selectBtn{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+.signup{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .adminBtn,
-.userBtn {
+.userBtn,
+.signupBtn {
     display: inline-block;
 }

@@ -17,12 +17,12 @@ export class Component implements OnInit {
 
         if (this.moveItem == 'moveAdmin') {
             localStorage.setItem('moveItem', 'moveAdmin');
-            location.href = "/PageLogin"
+            location.href = "/login"
             
         }
         else {
             localStorage.setItem('moveItem', 'moveUser');
-            location.href = "/PageLogin"
+            location.href = "/login"
             
         }
         await this.service.render();
