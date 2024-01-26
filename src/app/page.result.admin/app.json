@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.result.admin",
+    "title": "result/admin",
+    "namespace": "result.admin",
+    "viewuri": "/result/admin",
+    "category": "",
+    "preview": "/result/admin",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.result.admin",
+        "name": "PageResultAdminComponent",
+        "path": "./page.result.admin/page.result.admin.component"
+    },
+    "ng": {
+        "selector": "wiz-page-result-admin",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-result-admin([title]=\"\")"
+}

@@ -57,10 +57,6 @@ export class Component implements OnInit {
         await this.service.render();
     }
 
-     public async move(){
-        location.href="/AdminResult";
-    }
-
 
     // public async search() {
     //     this.query.page = 1;

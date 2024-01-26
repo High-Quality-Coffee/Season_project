@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.task.admin.notice",
+    "title": "task/admin/notice",
+    "namespace": "task.admin.notice",
+    "viewuri": "/task/admin/notice",
+    "category": "",
+    "preview": "/task/admin/notice",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.task.admin.notice",
+        "name": "PageTaskAdminNoticeComponent",
+        "path": "./page.task.admin.notice/page.task.admin.notice.component"
+    },
+    "ng": {
+        "selector": "wiz-page-task-admin-notice",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-task-admin-notice()"
+}

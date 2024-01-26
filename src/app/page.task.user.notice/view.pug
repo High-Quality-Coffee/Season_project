@@ -3,17 +3,10 @@
     nav
         ul
             li
-                a(href='#') 과제 공지
-            li
-                a(href='#') 과제 수정
-            li
-                a((click)="move()") 과제 확인
-
-
-// .content-container
-//     .contentNotice
-//         h2.title Notice
-    
+                a(routerLink="/result/user") 내 정보
+            
+// .categories
+//     button.myprofile 내 정보
 
 .w-100
     wiz-component-first
@@ -25,8 +18,8 @@
                     h4.card-title.text-white {{ title }}
                     .col-auto.ml-auto.d-print-none
                     //ng-container(*ngIf="category==='notice'?service.auth.show('admin'):service.auth.show(true)")
-                    ng-container
-                        a.ml-2.btn.btn-sm.px-2.btn-white.text-blue(routerLink="/WritePage") 작성하기
+                    // ng-container
+                    //     a.ml-2.btn.btn-sm.px-2.btn-white.text-blue(routerLink="/WritePage") 작성하기
                     
                 .card-body
                     table.table.table-hover.board-table.box-shadow.br-10
@@ -35,11 +28,11 @@
                                 th.text-center.col-3.btlr 번호
                                 th.text-center 제목
                                 th.text-center.col-3 작성자
-                                th.text-center.col-3.btrr 등록일
+                                th.text-center.col-3.btrr 마감일
 
                         tbody
                             tr(*ngIf="!list")
-                                td.p-6.text-center(colspan=5) 게시글이 없습니다.
+                                td.p-6.text-center(colspan=5) 할당된 과제가 없습니다.
                             ng-container(*ngIf="list")
                                 tr(*ngFor="let item of list;let i = index")
                                     td.text-center.col-3 {{ item.id }}
@@ -48,5 +41,3 @@
                                     td.text-center.col-3 {{ item.user.name}}
                                     td.text-center.col-3 {{ item.created.substring(0,10) }}
                     wiz-component-pagination([current]="page.current", [start]="page.start", [end]="page.end", (pageMove)="pageLoad($event)")
-
-    
