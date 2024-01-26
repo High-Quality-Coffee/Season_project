@@ -15,9 +15,9 @@ export class Component implements OnInit {
         this.moveCheck = window.localStorage.getItem('moveItem');
         
         if (this.moveCheck == "moveAdmin")
-            location.href = "/AdminTaskNotice"
+            location.href = "/task/admin/notice"
         else
-            location.href = "/UserTaskNotice"
+            location.href = "/task/user/notice"
 
 
         //await this.service.render();

@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.task.user.notice",
+    "title": "task/user/notice",
+    "namespace": "task.user.notice",
+    "viewuri": "/task/user/notice",
+    "category": "",
+    "preview": "/task/user/notice",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.task.user.notice",
+        "name": "PageTaskUserNoticeComponent",
+        "path": "./page.task.user.notice/page.task.user.notice.component"
+    },
+    "ng": {
+        "selector": "wiz-page-task-user-notice",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-task-user-notice()"
+}

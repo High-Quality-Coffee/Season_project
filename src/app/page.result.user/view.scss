@@ -8,6 +8,14 @@
     top: 38px;
 }
 
+.col-md-2 {
+    text-align: center;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+
+
 .relation {
     // border-top: 0.4px solid black;
     height: 100%;
@@ -45,4 +53,8 @@
     border-radius: 0;
     overflow-anchor: none;
     transition: var(--tblr-accordion-transition);
+}
+
+#file {
+    width: 151%;
 }

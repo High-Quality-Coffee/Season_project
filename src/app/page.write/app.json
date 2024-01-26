@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.write",
+    "title": "write",
+    "namespace": "write",
+    "viewuri": "/write",
+    "category": "",
+    "preview": "/write",
+    "controller": "",
+    "ng.build": {
+        "id": "page.write",
+        "name": "PageWriteComponent",
+        "path": "./page.write/page.write.component"
+    },
+    "ng": {
+        "selector": "wiz-page-write",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-write()",
+    "layout": "layout.navbar"
+}

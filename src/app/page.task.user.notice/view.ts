@@ -57,10 +57,6 @@ export class Component implements OnInit {
         await this.service.render();
     }
 
-     public async move(){
-        location.href="/UserResult";
-    }
-
     // public async search() {
     //     this.query.page = 1;
     //     var q = thisect.entries(angular.copy(this.query)).map(e => e.join('=')).join('&');
