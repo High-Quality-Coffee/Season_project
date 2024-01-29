@@ -15,10 +15,8 @@
     },
     "ng": {
         "selector": "wiz-page-modalresult",
-        "inputs": [
-            "title"
-        ],
+        "inputs": [],
         "outputs": []
     },
-    "template": "wiz-page-modalresult([title]=\"\")"
+    "template": "wiz-page-modalresult()"
 }
