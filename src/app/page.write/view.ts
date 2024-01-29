@@ -34,6 +34,7 @@ export class Component implements OnInit {
     public async init() {
         this.post.id = WizRoute.segment.id;
         this.post.category = WizRoute.segment.category;
+        console.log(this.category_list.find(e => e.id === this.post.category))
         this.title = this.category_list.find(e => e.id === this.post.category).name
         if (this.post.id !== "new") {
             const { code, data } = await wiz.call("load", { id: this.post.id });

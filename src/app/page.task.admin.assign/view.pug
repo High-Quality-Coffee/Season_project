@@ -5,22 +5,34 @@
             li
                 a(routerLink="/task/admin/assign") 과제 확인
             li
-                a(routerLink="/result/admin") 할당 완료
+                a((click)="save_userInfo()") 할당 완료
 
 .assign-setting
     .name-choice
         .name
             h2 이름
-        button.no example
-        button.no example
+        input.no(type="text", placeholder="이름을 입력하세요", [(ngModel)]="data.name")
 
     .assign-number
         .number
-            h2 과제번호
-        button.no example
-        button.no example
-
+            h2 과제선택
+        button.no([(ngModel)]="data.id") 1 
+        button.no([(ngModel)]="data.id") 2
+    
     .due-date
         .date
-            h2 마감기한
+            h2 면접날짜
+        input.no(type="text", placeholder="면접날짜를 입력하세요", [(ngModel)]="data.interview")
+
+    .user_email
+        .email
+            h2 이메일
+        input.no(type="text", placeholder="이메일을 입력하세요", [(ngModel)]="data.email")
+    
+    .user_phone
+        .phone
+            h2 연락처
+        input.no(type="text", placeholder="연락처를 입력하세요", [(ngModel)]="data.phone")
+    
+
         
