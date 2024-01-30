@@ -26,8 +26,12 @@ export class Component implements OnInit {
         let { code, data } = await wiz.call("save", user);
         if (code == 200) {
             await this.service.render();
+            
             return;
         }
+        
+        location.href = "result/admin";
+        
     }
 
 }

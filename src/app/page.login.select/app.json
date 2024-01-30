@@ -1,0 +1,24 @@
+{
+    "mode": "page",
+    "id": "page.login.select",
+    "title": "login/select",
+    "namespace": "login.select",
+    "viewuri": "/login/select",
+    "category": "",
+    "preview": "/login/select",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.login.select",
+        "name": "PageLoginSelectComponent",
+        "path": "./page.login.select/page.login.select.component"
+    },
+    "ng": {
+        "selector": "wiz-page-login-select",
+        "inputs": [
+            "title"
+        ],
+        "outputs": []
+    },
+    "template": "wiz-page-login-select([title]=\"\")"
+}
