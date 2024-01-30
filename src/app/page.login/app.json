@@ -15,10 +15,8 @@
     },
     "ng": {
         "selector": "wiz-page-login",
-        "inputs": [
-            "title"
-        ],
+        "inputs": [],
         "outputs": []
     },
-    "template": "wiz-page-login([title]=\"\")"
+    "template": "wiz-page-login()"
 }

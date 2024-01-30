@@ -6,7 +6,7 @@ import json
 
 class Model(pw.Model):
     class Meta:
-        config = wiz.config("database").get("orm")
+        config = wiz.config("database").get("base")
         if config.type == 'mysql':
             opts = dict()
             for key in ['host', 'user', 'password', 'charset', 'port']:
