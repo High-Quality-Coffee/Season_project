@@ -1,10 +1,7 @@
 import re
 
-# userdb = wiz.model("db").use("user") - formbox 형식 db 호출 코드
+db = wiz.model("orm").use("user_info")
 
-struct = wiz.model("portal/season/struct")
-orm=wiz.model("portal/season/orm")
-db=struct.db("user_info")
 
 def submit():
     user=dict()
