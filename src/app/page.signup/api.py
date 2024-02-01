@@ -4,6 +4,7 @@ db = wiz.model("orm").use("user_info")
 
 
 def submit():
+    print("query : ", wiz.request.query())
     user=dict()
     user["id"] = wiz.request.query('id', True)
     user["name"] = wiz.request.query('name', True)

@@ -32,10 +32,9 @@ export class Component implements OnInit {
         let user = JSON.parse(JSON.stringify(this.data));
         //user.password = this.service.auth.hash(user.password);
         let { code, data } = await wiz.call("submit", user);
-        console.log(data);
         if (code == 200) {
             await this.service.render();
-            location.href = "/auth/login"
+            location.href = "/login"
             return;
         }
         //await this.alert(this.data);
