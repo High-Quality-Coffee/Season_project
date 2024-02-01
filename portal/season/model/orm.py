@@ -1,36 +1,26 @@
 import os
 import math
-import time
 import datetime
 import string as _string
 import random as _random
 import peewee as pw
 from playhouse.shortcuts import model_to_dict, dict_to_model
-
-config = wiz.model("portal/season/config")
-
-ORM_BASE = config.orm_base
+        
+ORM_BASE = wiz.config("season").get("orm_base", "db/")
 
 class Model:
-    def __init__(self, tablename=None, module=None, id_size=32):
+    def __init__(self, tablename=None):
         self.tablename = tablename
-        self.orm = Model.cls(tablename=tablename, module=module)
-        self.id_size = id_size
-
+        self.orm = wiz.model(os.path.join(ORM_BASE, tablename))
+        
     @classmethod
-    def use(cls, tablename=None, module=None, id_size=32):
-        return cls(tablename=tablename, module=module, id_size=id_size)
+    def use(cls, tablename=None):
+        return cls(tablename=tablename)
 
     @staticmethod
-    def cls(tablename=None, module=None):
-        try:
-            orm = wiz.model(os.path.join(ORM_BASE, tablename))
-        except:
-            pass
-        if module is not None:
-            orm = wiz.model(os.path.join("portal", module, "db", tablename))
-        return orm
-    
+    def cls(tablename=None):
+        return wiz.model(os.path.join(ORM_BASE, tablename))
+
     @staticmethod
     def random(length=16, number=False):
         string_pool = _string.ascii_letters + _string.digits
@@ -41,19 +31,12 @@ class Model:
             result += _random.choice(string_pool)
         return result.lower()
 
-    @staticmethod
-    def base(namespace="base"):
-        return wiz.model("portal/season/dbbase/mysql")(namespace)
-
     def query(self, sql):
         query = self.orm.raw(sql)
         rows = []
         for row in query.dicts():
             rows.append(row)
         return rows
-    
-    def select(self):
-        return self.orm.select()
 
     def field(self, key):
         db = self.orm
@@ -68,16 +51,11 @@ class Model:
         data = self.rows(**kwargs)
         if len(data) > 0:
             return season.util.std.stdClass(data[0])
-        return None
 
-    def count(self, query=None, groupby=None, like=None, **where):
+    def count(self, groupby=None, like=None, **where):
         db = self.orm
         try:
-            queryfn = query
             query = db.select(pw.fn.COUNT(db.id).alias("cnt"))
-            if queryfn is not None:
-                query = queryfn(db, query)
-            
             if like is not None:
                 like = like.split(",")
             
@@ -90,17 +68,16 @@ class Model:
 
                     qo = None
                     for v in values:
-                        if hasattr(v, '__call__'):
-                            _qo = v(field)
-                        else:
-                            _qo = field==v
-                            if like is not None and key in like:
-                                _qo = field.contains(v)
                         if qo is None:
-                            qo = _qo
+                            if like is not None and key in like:
+                                qo = field.contains(v)
+                            else:
+                                qo = field==v
                         else:
-                            qo = (qo) | (_qo)
-
+                            if like is not None and key in like:
+                                qo = (qo) | (field.contains(v))
+                            else:
+                                qo = (qo) | (field==v)
                     query = query.where(qo)
                 except Exception as e:
                     pass
@@ -117,18 +94,16 @@ class Model:
                 query = query.group_by(*groupby)
             
                 return len(query)
-
+            
             return query.dicts()[0]['cnt']
-        except Exception as e:
+        except:
             pass
         return None
 
     def rows(self, query=None, groupby=None, order='ASC', orderby=None, page=None, dump=10, fields=None, like=None, **where):
         db = self.orm
-        queryfn = query
-        query = db.select()
-        if queryfn is not None:
-            query = queryfn(db, query)
+        if query is None:
+            query = db.select()
 
         if like is not None:
             like = like.split(",")
@@ -142,17 +117,16 @@ class Model:
 
                 qo = None
                 for v in values:
-                    if hasattr(v, '__call__'):
-                        _qo = v(field)
-                    else:
-                        _qo = field==v
-                        if like is not None and key in like:
-                            _qo = field.contains(v)
                     if qo is None:
-                        qo = _qo
+                        if like is not None and key in like:
+                            qo = field.contains(v)
+                        else:
+                            qo = field==v
                     else:
-                        qo = (qo) | (_qo)
-                        
+                        if like is not None and key in like:
+                            qo = (qo) | (field.contains(v))
+                        else:
+                            qo = (qo) | (field==v)
                 query = query.where(qo)
             except Exception as e:
                 pass
@@ -204,38 +178,19 @@ class Model:
     def insert(self, *args, **data):
         if len(args) > 0: data = args[0]
         db = self.orm
-        if 'id' not in data and hasattr(db, "id"):
-            cls = type(getattr(db, "id"))
-            if cls is not pw.IntegerField and cls is not pw.BigIntegerField:
-                obj_id = self.random(self.id_size)
-                if self.id_size == 32:
-                    obj_id = str(int(time.time()*1000000)) + self.random(16)
-                while self.get(id=obj_id) is not None:
-                    obj_id = self.random(self.id_size)
-                    if self.id_size == 32:
-                        obj_id = str(int(time.time()*1000000)) + self.random(16)
-                data['id'] = obj_id
-            else:
-                obj_id = None
+        if 'id' not in data:
+            obj_id = self.random(16)
+            while self.get(id=obj_id) is not None:
+                obj_id = self.random(16)
+            data['id'] = obj_id
         else:
             obj_id = data['id']
-
         if self.get(id=obj_id) is not None:
             raise Exception("wizdb Error: Duplicated")
-                
-        item = dict()
-        for key in data:
-            if hasattr(db, key):
-                item[key] = data[key]
-        create_id = db.create(**item)
-        if obj_id is None:
-            obj_id = create_id
+        db.create(**data)
         return obj_id
 
-    def update(self, data, like=None, **where):
-        if self.count(like=like, **where) > 20:
-            raise Exception("wizdb Error: update too many items")
-
+    def update(self, data, **where):
         db = self.orm
         item = dict()
         for key in data:
@@ -245,24 +200,7 @@ class Model:
         query = db.update(**item)
         for key in where:
             field = getattr(db, key)
-            values = [where[key]]
-            if type(where[key]) == list:
-                values = where[key]
-
-            qo = None
-            for v in values:
-                if qo is None:
-                    if like is not None and key in like:
-                        qo = field.contains(v)
-                    else:
-                        qo = field==v
-                else:
-                    if like is not None and key in like:
-                        qo = (qo) | (field.contains(v))
-                    else:
-                        qo = (qo) | (field==v)
-            query = query.where(qo)
-        
+            query = query.where(field==where[key])
         query.execute()
         
     def delete(self, **where):
