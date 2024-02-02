@@ -16,7 +16,7 @@ export class Component implements OnInit {
         email: '',
         phone: '',
         interview: '',
-        role: ''
+        center: ''
     };
 
     public async ngOnInit() {
@@ -27,11 +27,9 @@ export class Component implements OnInit {
         let { code, data } = await wiz.call("assign", user);
         if (code == 200) {
             await this.service.render();
-
+            location.href = "result/admin";
             return;
         }
-
-        location.href = "result/admin";
 
     }
 
