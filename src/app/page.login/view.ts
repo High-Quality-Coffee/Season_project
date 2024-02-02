@@ -17,7 +17,7 @@ export class Component implements OnInit {
 
     public data: any = {
         email: '',
-        password: ''
+        password: '',
     };
 
     public async moveTaskNotice() {
@@ -33,14 +33,7 @@ export class Component implements OnInit {
     }
 
     public async alert(message: string, status: string = 'error') {
-        return await this.service.alert.show({
-            title: "",
-            message: message,
-            cancel: false,
-            actionBtn: status,
-            action: "확인",
-            status: status,
-        });
+        alert(message);
     }
 
     public async login() {
@@ -51,7 +44,10 @@ export class Component implements OnInit {
             this.alert(data);
             return;
         }
-        location.href = this.menu.redirect;
-        this.menu.redirect = null;
+        if(data=="admin")
+            location.href = "/task/admin/notice"
+        else
+            location.href = "/task/user/notice"
+            
     }
 }
