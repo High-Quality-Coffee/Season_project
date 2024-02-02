@@ -1,41 +1,37 @@
 import { OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Service } from '@wiz/libs/portal/season/service';
+import { Menu } from '@wiz/libs/menu';
 
 export class Component implements OnInit {
     @Input() title: any;
-    public modalOpenButton: any;
-    public modalCloseButton: any;
-    public modal: any;
-    public selected: "";
-    public isShow: any;
+    public list: [];
 
+    constructor(
+        public route: ActivatedRoute,
+        public service: Service,
+    ) { }
 
     public async ngOnInit() {
-        this.modal = document.getElementById('modalContainer');
-        this.isShow = true;
+        await this.service.init();
+        this.pageLoad(1);
     }
 
-    public async modal_remove() {
-        if (this.modal) {
-            this.modal.classList.remove('hidden');
+    private pageLoad() {
+        this.onLoad();
+    }
+
+    public async onLoad() {
+        let body = {
+            category: 'category'
         }
-    }
+        const { code, list } = await wiz.call("search", body);
+        console.log(list);
+        if (code != 200) return;
 
-    public async modal_add() {
-        if (this.modal)
-            this.modal.classList.add('hidden');
-    }
+        this.list = list;
+        await this.service.render();
 
-
-    public async changeOption(option) {
-        this.isShow = false;
-        if (this.option == 'accept') this.selected = option;
-        else this.selected = option;
-    }
-
-    public async choiceAgain() {
-        this.isShow = true;
-        this.selected = "";
-        if (this.modal) this.modal.classList.add('hidden');
     }
 
 

@@ -1,10 +1,10 @@
 .login-wrapper
   h2 Login
   form#login-form(method='post' action='서버의url')
-    input(type='text' name='userName' placeholder='Email' [(ngModel)]="data.email")  
+    input(type='text', name='userName',placeholder='Email' ,[(ngModel)]="data.email")  
     
-    input(type='password' name='userPassword' placeholder='Password' [(ngModel)]="data.password")
+    input(type='password', name='userPassword', placeholder='Password' , [(ngModel)]="data.password")
     label(for='remember-check')
       input#remember-check(type='checkbox')
       | &#xC544;&#xC774;&#xB514; &#xC800;&#xC7A5;&#xD558;&#xAE30;
-    input(type='submit', value='로그인', (click)="moveTaskNotice()")
+    input(type='submit', value='로그인', (click)="login()")

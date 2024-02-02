@@ -30,7 +30,7 @@ class Model(base):
     phone=pw.CharField(max_length=64)
     password=base.PasswordField()
     center=base.TextField()
-    role=base.TextField()
+    role=pw.CharField(max_length=11)
     interview=pw.CharField(max_length=32)
     created=pw.CharField(max_length=11)
     #IntegerField() 는 max_length 지정해줄 필요 없음 - 지정하면 오류발생
