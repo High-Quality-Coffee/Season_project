@@ -5,7 +5,7 @@
             li
                 a(routerLink="/result/admin") 과제 확인
             li
-                a((click)="save_userInfo()") 할당 완료
+                a((click)="assign()") 할당 완료
 
 .assign-setting
     .name-choice
@@ -34,5 +34,9 @@
             h2 연락처
         input.no(type="text", placeholder="연락처를 입력하세요", [(ngModel)]="data.phone")
     
+    .user_role
+        .phone
+            h2 지원 부서
+        input.no(type="text", placeholder="지원부서를 입력하세요", [(ngModel)]="data.role")
 
         

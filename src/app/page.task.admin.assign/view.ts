@@ -15,23 +15,24 @@ export class Component implements OnInit {
         name: '',
         email: '',
         phone: '',
-        interview: ''
+        interview: '',
+        role: ''
     };
 
     public async ngOnInit() {
     }
 
-    public async save_userInfo() {
+    public async assign() {
         let user = JSON.parse(JSON.stringify(this.data));
-        let { code, data } = await wiz.call("save", user);
+        let { code, data } = await wiz.call("assign", user);
         if (code == 200) {
             await this.service.render();
-            
+
             return;
         }
-        
+
         location.href = "result/admin";
-        
+
     }
 
 }
