@@ -14,9 +14,7 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        await this.service.init();
         this.onLoad();
-        await this.service.render();
     }
 
     public async onLoad() {
@@ -28,7 +26,7 @@ export class Component implements OnInit {
         console.log(this.list);
         await this.service.render();
         if (code != 200) return;
-        
+
     }
 
 
