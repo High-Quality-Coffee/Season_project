@@ -13,8 +13,8 @@
                     tbody
                         tr(*ngIf="!list")
                             td.text-center(colspan=6) 지원자가 없습니다.
-
                         ng-container(*ngIf="list")
                             tr(*ngFor="let item of list")
-                                td.text-center.col-3 {{ item.name }}
+                                td.text-center {{ item.name }}
+                                
                                

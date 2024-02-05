@@ -4,8 +4,13 @@ db=wiz.model("orm").use("user_info")
 
 def search():
     var="dev"
-    category=wiz.request.query("category",True)
-    rows=db.get(center=var)
-    wiz.response.status(200,{
-        "list" : rows
-    })
+    center=wiz.request.query("center",True)
+
+    where=dict(
+        center=center,
+        fields="name,center,email"
+    )
+
+    rows=db.rows(**where)
+    print(rows[0])
+    wiz.response.status(200,rows)
