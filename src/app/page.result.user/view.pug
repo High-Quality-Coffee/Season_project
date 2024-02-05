@@ -3,28 +3,30 @@
                 table.table.table-center.table-nowrap.card-table
                     thead
                         tr
-                            th.text-uppercase(style="width: 16px;")
                             th.text-uppercase 이름
                             th.text-uppercase 파일
                             th.text-uppercase.text-center 제출여부
                             th.text-uppercase.text-center 마감기한
-                            th.text-uppercase.w-1 
 
                     tbody
-                        tr()
-                            td.text-center(colspan=6) No Data
+                        tr(*ngFor="let item of list")
+                            td.text-center {{item.name}}
+                            td.text-center 없음
+                            td.text-center 제출 안함
+                            td.text-center 면접 하루 전 자정까지
 
                         tr
-                            th.text-uppercase(style="width: 16px;")
                             th.text-uppercase 면접날짜
                             th.text-uppercase 이메일
                             th.text-uppercase 연락처
                             th.text-uppercase 지원부서
-                            th.text-uppercase.w-1 
                             
                     tbody
-                        tr()
-                            td.text-center(colspan=6) No Data
+                        tr(*ngFor="let item of list")
+                            th.text-uppercase {{item.interview}}
+                            th.text-uppercase {{item.email}}
+                            th.text-uppercase {{item.phone}}
+                            th.text-uppercase {{item.center}}
 
 
 

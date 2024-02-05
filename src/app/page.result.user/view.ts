@@ -2,6 +2,7 @@ import { OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from '@wiz/libs/portal/season/service';
 import ClassicEditor from '@wiz/libs/ckeditor/ckeditor';
+import { Menu } from '@wiz/libs/menu';
 
 export class Component implements OnInit {
     public title: any;
@@ -10,6 +11,7 @@ export class Component implements OnInit {
     public editor;
     public file;
     public fd = new FormData();
+    public list: any;
 
     constructor(
         public route: ActivatedRoute,
@@ -17,11 +19,12 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        await this.service.init();
-        this.route.params.subscribe(async ({ category }) => {
-            this.post.category = category;
-            await this.init();
-        })
+        // await this.service.init();
+        // this.route.params.subscribe(async ({ category }) => {
+        //     this.post.category = category;
+        //     await this.init();
+        // })
+        this.onLoad();
     }
 
     public go(item) {
@@ -101,6 +104,18 @@ export class Component implements OnInit {
         await wiz.call('delete', { id: this.post.id });
         alert("삭제되었습니다.");
         this.go(this.post.category);
+    }
+
+    public async onLoad() {
+        let user = window.localStorage.getItem('email');
+        let body = {
+            email: user,
+        }
+        const { code, data } = await wiz.call("search", body);
+        this.list = data;
+        console.log(this.list);
+        await this.service.render();
+        if (code != 200) return;
     }
 }
 
