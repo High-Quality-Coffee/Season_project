@@ -3,18 +3,20 @@
                 table.table.table-center.table-nowrap.card-table
                     thead
                         tr
-                            th.text-uppercase(style="width: 16px;")
                             th.text-uppercase 이름
                             th.text-uppercase 제출
                             th.text-uppercase.text-center 파일
                             th.text-uppercase.text-center 점수
                             th.text-uppercase.text-center 피드백
-                            th.text-uppercase.w-1
                     tbody
                         tr(*ngIf="!list")
                             td.text-center(colspan=6) 지원자가 없습니다.
-
                         ng-container(*ngIf="list")
                             tr(*ngFor="let item of list")
                                 td.text-center.col-3 {{ item.name }}
+                                td.text-center.col-3
+                                td.text-center.col-3
+                                td.text-center.col-3
+                                td.text-center.col-3 
+                                
                                

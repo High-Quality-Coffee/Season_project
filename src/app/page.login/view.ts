@@ -44,10 +44,11 @@ export class Component implements OnInit {
             this.alert(data);
             return;
         }
-        if(data=="admin")
+        localStorage.setItem('email', this.data.email);
+        if (data == "admin")
             location.href = "/task/admin/notice"
         else
             location.href = "/task/user/notice"
-            
+
     }
 }
