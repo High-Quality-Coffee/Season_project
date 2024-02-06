@@ -16,6 +16,7 @@ export class Component implements OnInit {
         email: '',
         phone: '',
         interview: '',
+        duedate: '',
         center: ''
     };
 

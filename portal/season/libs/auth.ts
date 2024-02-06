@@ -2,33 +2,35 @@ import Service from './service';
 import Request from './request';
 
 export default class Auth {
-    public verified: Array<string> = [];
+    public verified: string | null = null;
+
     public timestamp: number = 0;
     public status: any = null;
     public loading: any = null;
-    public session: any = {};
+
+    public session: any = {
+        id: null,
+        mail: null,
+        role: null
+    };
 
     constructor(public service: Service) {
         this.request = new Request();
     }
 
     public async init() {
-        try {
-            let { code, data } = await this.request.post('/auth/check');
-            let { status, session } = data;
-            this.verified = session.verified?session.verified:[];
-            this.loading = true;
-            if (code != 200)
-                return this;
-            this.timestamp = new Date().getTime();
-            this.session = session;
-            this.status = status;
-            if (status && !session.agreement_timestamp) {
-                this.service.href("/agreement");
-            }
-        } catch (e) {
-            this.loading = true;
-        }
+        let { code, data } = await this.request.post('/auth/check');
+        let { status, session } = data;
+
+        this.verified = session.verified;
+
+        if (code != 200)
+            return this;
+
+        this.timestamp = new Date().getTime();
+        this.session = session;
+        this.status = status;
+        this.loading = true;
         return this;
     }
 
@@ -44,104 +46,58 @@ export default class Auth {
         }
     }
 
-    public allow: any = (() => {
-        let obj = (roles: any = null, redirect: string | null = null) => {
-            if (roles === null) {
+    public async allow(roles: any = null, redirect: string | null = null) {
+        if (roles === null) {
+            if (this.service.loading.isshow)
+                this.service.loading.hide();
+            return true;
+        }
+
+        if (typeof roles == 'boolean') {
+            if (roles === this.status) {
                 if (this.service.loading.isshow)
                     this.service.loading.hide();
                 return true;
             }
+        } else {
+            if (typeof roles == 'string')
+                roles = [roles];
 
-            if (typeof roles == 'boolean') {
-                if (roles === this.status) {
-                    if (this.service.loading.isshow)
-                        this.service.loading.hide();
-                    return true;
-                }
-            } else {
-                if (typeof roles == 'string')
-                    roles = [roles];
-
-                if (roles.indexOf(this.session.role) >= 0) {
-                    if (this.service.loading.isshow)
-                        this.service.loading.hide();
-                    return true;
-                }
-            }
-
-            if (redirect) {
-                location.href = redirect;
-            }
-            return false;
-        }
-
-        obj.membership = (values: any = null, redirect: string | null = null) => {
-            if (values === null) {
+            if (roles.indexOf(this.session.role) >= 0) {
                 if (this.service.loading.isshow)
                     this.service.loading.hide();
                 return true;
             }
-
-            if (typeof values == 'string')
-                values = [values];
-
-            if (values.indexOf(this.session.membership) >= 0) {
-                if (this.service.loading.isshow)
-                    this.service.loading.hide();
-                return true;
-            }
-
-            if (redirect) {
-                location.href = redirect;
-            }
-            return false;
         }
 
-        return obj;
-    })();
+        if (redirect) {
+            location.href = redirect;
+        }
+        return false;
+    }
 
-    public show: any = (() => {
-        let obj = (roles: any = null) => {
-            if (roles === null) {
-                return true;
-            }
-
-            if (typeof roles == 'boolean') {
-                if (roles === this.status) {
-                    return true;
-                }
-            } else {
-                if (typeof roles == 'string')
-                    roles = [roles];
-
-                if (roles.indexOf(this.session.role) >= 0) {
-                    return true;
-                }
-            }
-
-            return false;
+    public show(roles: any = null, redirect: string | null = null) {
+        if (roles === null) {
+            return true;
         }
 
-        obj.membership = (values: any = null) => {
-            if (values === null) {
+        if (typeof roles == 'boolean') {
+            if (roles === this.status) {
                 return true;
             }
+        } else {
+            if (typeof roles == 'string')
+                roles = [roles];
 
-            if (typeof values == 'string')
-                values = [values];
-
-            if (values.indexOf(this.session.membership) >= 0) {
+            if (roles.indexOf(this.session.role) >= 0) {
                 return true;
             }
-
-            return false;
         }
 
-        return obj;
-    })();
-
-    public verify(serviceId) {
-        return this.verified.includes(serviceId);
+        if (redirect) {
+            location.href = redirect;
+        }
+        return false;
     }
 
     public hash(password: string = '') {

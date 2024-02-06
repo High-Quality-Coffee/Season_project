@@ -4,17 +4,6 @@ base=wiz.model("orm_base")
 class Model(base):
     class Meta:
         db_table='user_info'
-
-    # id=pw.IntegerField(primary_key=True)
-    # name=pw.TextField()
-    # email=pw.TextField()
-    # phone=pw.CharField(max_length=64)
-    # password=pw.TextField()
-    # center=pw.TextField()
-    # role=pw.TextField()
-    # interview=pw.CharField(max_length=32)
-    # created=pw.CharField(max_length=11)
-    # modified=pw.IntegerField(max_length=11)
     
     #peewee에 있는 함수들을 사용하려고 하였으나, 
     #base=wiz.model("orm_base")을 선언하여, orm_base의 함수들 사용해야 함.
@@ -32,6 +21,7 @@ class Model(base):
     center=base.TextField()
     role=pw.CharField(max_length=11)
     interview=pw.CharField(max_length=32)
+    duedate=pw.CharField(max_length=32)
     created=pw.CharField(max_length=11)
     #IntegerField() 는 max_length 지정해줄 필요 없음 - 지정하면 오류발생
     modified=pw.IntegerField()
