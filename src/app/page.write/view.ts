@@ -2,6 +2,7 @@ import { OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from '@wiz/libs/portal/season/service';
 import ClassicEditor from '@wiz/libs/ckeditor/ckeditor';
+import { Menu } from '@wiz/libs/menu';
 
 export class Component implements OnInit {
     public title: any;
@@ -14,6 +15,7 @@ export class Component implements OnInit {
     constructor(
         public route: ActivatedRoute,
         public service: Service,
+        public menu: Menu,
     ) { }
 
     public async ngOnInit() {
