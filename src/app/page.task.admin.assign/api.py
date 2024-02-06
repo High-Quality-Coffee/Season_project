@@ -14,6 +14,9 @@ def assign():
     endPhoneNum=user["phone"][-4:] #휴대폰 번호 뒤 4자리
     
     user["interview"]=wiz.request.query('interview', True)
+    user["center"]=wiz.request.query('center', True)
+    user["password"]='season'+endPhoneNum
+    user["role"]="user"
     
     date_string = user["interview"]
     given_datetime = strptime(date_string, "%Y-%m-%d %H:%M:%S")
