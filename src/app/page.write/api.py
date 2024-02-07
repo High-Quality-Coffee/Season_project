@@ -5,6 +5,7 @@ import datetime
 
 storagepath = wiz.config("config").STORAGE_PATH
 model = wiz.model('orm').use('community')
+db=wiz.model('orm').use('community')
 
 def load():
     id = wiz.request.query('id',True)
@@ -44,3 +45,11 @@ def delete_file(wiz):
     data['updated'] = datetime.datetime.now()
     model.update(data, id=id)
     wiz.response.status(200, True)
+
+def save():
+    user=dict()
+    user["title"]=wiz.request.query('title',True)
+    user["content"]=wiz.request.query('content',True)
+
+    db.insert(user)
+    wiz.response.status(200,True)

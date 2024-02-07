@@ -12,6 +12,11 @@ export class Component implements OnInit {
     public file;
     public fd = new FormData();
 
+    public assign = {
+        title: "",
+        content: ""
+    }
+
     constructor(
         public route: ActivatedRoute,
         public service: Service,
@@ -68,7 +73,7 @@ export class Component implements OnInit {
         let url = wiz.url('update')
         const { code, data } = await this.service.file.upload(url, this.fd);
         if (code === 200) {
-            location.href = `/community/${this.post.category}/view/${data}`;
+            location.href = "task/admin/notice";
         }
         else alert("오류가 발생했습니다. 다시 시도해주세요.")
     }
@@ -104,6 +109,17 @@ export class Component implements OnInit {
         await wiz.call('delete', { id: this.post.id });
         alert("삭제되었습니다.");
         this.go(this.post.category);
+    }
+
+    public async save() {
+        let user=this.assign;
+        let {code, data}=await wiz.call("save",user);
+        if(code==200){
+            await this.service.render();
+            location.href="/task/admin/notice"
+            return;
+        }
+
     }
 }
 

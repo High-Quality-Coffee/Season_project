@@ -36,15 +36,28 @@
                                 th.text-center.col-3.btrr 등록일
 
                         tbody
-                            tr(*ngIf="!list")
+                            // tr(*ngIf="!list")
+                            //     td.p-6.text-center(colspan=5) 게시글이 없습니다.
+                            
+                            tr(*ngIf="!lisT")
                                 td.p-6.text-center(colspan=5) 게시글이 없습니다.
-                            ng-container(*ngIf="list")
-                                tr(*ngFor="let item of list;let i = index")
+
+
+                            // ng-container(*ngIf="list")
+                                // tr(*ngFor="let item of list;let i = index")
+                                //     td.text-center.col-3 {{ item.id }}
+                                //     td
+                                //         a.title.text-navy(routerLink="/community/{{category}}/view/{{item.id}}") {{item.title.length == 0 ? "제목없음" : item.title}}
+                                //     td.text-center.col-3 {{ item.user.name}}
+                                //     td.text-center.col-3 {{ item.created.substring(0,10) }}
+
+                            ng-container(*ngIf="lisT")
+                                tr(*ngFor="let item of lisT;let i = index")
                                     td.text-center.col-3 {{ item.id }}
                                     td
-                                        a.title.text-navy(routerLink="/community/{{category}}/view/{{item.id}}") {{item.title.length == 0 ? "제목없음" : item.title}}
-                                    td.text-center.col-3 {{ item.user.name}}
-                                    td.text-center.col-3 {{ item.created.substring(0,10) }}
-                    wiz-component-pagination([current]="page.current", [start]="page.start", [end]="page.end", (pageMove)="pageLoad($event)")
+                                        a.text-navy {{item.title.length == 0 ? "제목없음" : item.title}}
+                                    td.text-center.col-3 admin
+                                    td.text-center.col-3 null
+                    
 
     
