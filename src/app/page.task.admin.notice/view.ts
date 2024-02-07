@@ -6,6 +6,9 @@ import { Menu } from '@wiz/libs/menu';
 export class Component implements OnInit {
     public list: [];
 
+    // 맨 끝 대문자 코드, 함수, 변수 테스트용으로 작성
+    public lisT: any;
+
     public page = {
         start: 1,
         end: 1,
@@ -23,6 +26,7 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
+        this.onLoaD();
         await this.service.init();
         this.route.params.subscribe(async ({ category }) => {
             this.category = category;
@@ -57,6 +61,16 @@ export class Component implements OnInit {
         await this.service.render();
     }
 
+    public async onLoaD(){
+        let user = window.localStorage.getItem('email');
+        let body = {
+            email: user,
+        }
+        const {code, data}=await wiz.call("onLoaD",body);
+        this.lisT=data;
+        await this.service.render();
+        if(code!=200) return;
+    }
 
     // public async search() {
     //     this.query.page = 1;
