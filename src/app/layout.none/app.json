@@ -1,0 +1,20 @@
+{
+    "mode": "layout",
+    "id": "layout.none",
+    "title": "None",
+    "namespace": "none",
+    "viewuri": "",
+    "category": "",
+    "controller": "",
+    "ng.build": {
+        "id": "layout.none",
+        "name": "LayoutNoneComponent",
+        "path": "./layout.none/layout.none.component"
+    },
+    "ng": {
+        "selector": "wiz-layout-none",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-layout-none()"
+}
