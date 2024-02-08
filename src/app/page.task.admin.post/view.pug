@@ -1,0 +1,36 @@
+.d-flex.justify-content-between(style="min-width:1200px")
+    div(style="min-width:980px;")
+        .card
+            .card-header.area-round.bg-blue
+                h4.card-title.text-white((click)='go(post.category)') {{ title }}
+                
+                .col-auto.ml-auto.d-print-none
+                    .d-flex.text-dark
+                        a.btn.btn-sm.px-2.btn-border.ml-2.d-none.d-sm-inline-block((click)='go(post.category)')
+                            i.mr-2.fa.fa-list
+                            | 목록
+                        ng-container(*ngIf="service.auth.show('admin')")
+                            a.btn.btn-sm.px-2.btn-border.ml-2.d-none.d-sm-inline-block(routerLink="/community/{{post.category}}/edit/{{post.id}}")
+                                i.mr-2.fa.fa-edit
+                                | 편집
+            .card-body
+                .info-form.row.first-child.p-3
+                    .col-md-8
+                        h3.m-0(style="font-size: 20px; line-height: 24px;") {{post.title}}
+                    .col-md-3.text-right
+                        .btn.btn-sm.btn-outline-orange 작성자
+                        span.ml-3 admin
+                
+                .info-form.row.ml-3(*ngIf="post.files && post.files.length > 0")
+                    .col-md-1
+                        h4 첨부파일
+                    .col-md-11
+                        ul.m-0
+                            li(*ngFor="let file of post.files;let i = index")
+                                a(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
+
+                .hr.m-0
+                .editor-area.mt-4.mb-4
+                    textarea#editor([(ngModel)]="post.content")
+
+

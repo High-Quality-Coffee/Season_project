@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.task.admin.post",
+    "title": "task/admin/post",
+    "namespace": "task.admin.post",
+    "viewuri": "/task/admin/post",
+    "category": "",
+    "preview": "/task/admin/post",
+    "controller": "base",
+    "layout": "layout.navbar",
+    "ng.build": {
+        "id": "page.task.admin.post",
+        "name": "PageTaskAdminPostComponent",
+        "path": "./page.task.admin.post/page.task.admin.post.component"
+    },
+    "ng": {
+        "selector": "wiz-page-task-admin-post",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-task-admin-post()"
+}

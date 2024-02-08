@@ -61,20 +61,19 @@ export class Component implements OnInit {
         await this.service.render();
     }
 
-    public async onLoaD(){
+    public async onLoaD() {
         let user = window.localStorage.getItem('email');
         let body = {
             email: user,
         }
-        const {code, data}=await wiz.call("onLoaD",body);
-        this.lisT=data;
+        const { code, data } = await wiz.call("onLoaD", body);
+        this.lisT = data;
         await this.service.render();
-        if(code!=200) return;
+        if (code != 200) return;
     }
 
-    // public async search() {
-    //     this.query.page = 1;
-    //     var q = thisect.entries(angular.copy(this.query)).map(e => e.join('=')).join('&');
-    //     location.href = "?" + q;
-    // }
+    public async saveTitle(value) {
+        window.localStorage.setItem('title', value);
+    }
+
 }
