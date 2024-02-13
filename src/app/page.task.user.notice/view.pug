@@ -9,8 +9,6 @@
 //     button.myprofile 내 정보
 
 .w-100
-    wiz-component-first
-
     .d-flex.justify-content-between(style="min-width:1200px")
         div(style="min-width:980px;")
             .card
@@ -31,13 +29,13 @@
                                 th.text-center.col-3.btrr 마감일
 
                         tbody
-                            tr(*ngIf="!list")
+                            tr(*ngIf="!items")
                                 td.p-6.text-center(colspan=5) 할당된 과제가 없습니다.
-                            ng-container(*ngIf="list")
-                                tr(*ngFor="let item of list;let i = index")
+                        
+                        ng-container(*ngIf="items")
+                                tr(*ngFor="let item of items;let i = index")
                                     td.text-center.col-3 {{ item.id }}
                                     td
-                                        a.title.text-navy(routerLink="/community/{{category}}/view/{{item.id}}") {{item.title.length == 0 ? "제목없음" : item.title}}
-                                    td.text-center.col-3 {{ item.user.name}}
-                                    td.text-center.col-3 {{ item.created.substring(0,10) }}
-                    wiz-component-pagination([current]="page.current", [start]="page.start", [end]="page.end", (pageMove)="pageLoad($event)")
+                                        a.text-navy(routerLink="/task/admin/post", (click)="saveTitle(item.title)") {{item.title.length == 0 ? "제목없음" : item.title}}
+                                    td.text-center.col-3 admin
+                                    td.text-center.col-3 null

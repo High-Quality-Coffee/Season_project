@@ -4,17 +4,7 @@ import { Service } from '@wiz/libs/portal/season/service';
 import { Menu } from '@wiz/libs/menu';
 
 export class Component implements OnInit {
-    public list: [];
-
-    public page = {
-        start: 1,
-        end: 1,
-        current: 1,
-    };
-    public text: string = "";
-    public category: string;
-    public title: string = "";
-    public category_list = [{ id: "notice", name: "공지사항" }, { id: "request", name: "요청사항" }, { id: "free", name: "자유게시판" }];
+    public items: any;
 
     constructor(
         public route: ActivatedRoute,
@@ -23,11 +13,8 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
+        this.onLoad();
         await this.service.init();
-        this.route.params.subscribe(async ({ category }) => {
-            this.category = category;
-            this.pageLoad(1);
-        })
     }
     public go(item) {
         const obj = {
@@ -36,30 +23,24 @@ export class Component implements OnInit {
         this.service.href([`/community/list`, obj]);
     }
 
-    private pageLoad(p: number) {
-        this.page.current = p;
-        this.onLoad();
-    }
-
     public async onLoad() {
-        this.title = this.category_list.find(e => e.id === this.category).name
+        let email = {
+            email: window.localStorage.getItem('email')
+        }
+        const { code, data } = await wiz.call("onLoad", email);
+        //let list = JSON.parse(data[0].assignName);
         let body = {
-            category: this.category,
-            page: this.page.current,
-        };
-        // if (body.text.replace(/\s/g, "").length === 0) delete body.text;
-        const { code, data } = await wiz.call("search", body);
-        if (code !== 200) return;
-        const { list, lastpage } = data;
-        this.page.start = (parseInt(this.page.current / 11) * 10) + 1;
-        this.page.end = lastpage;
-        this.list = list;
+            list: data[0].assignName
+        }
+        const { coding, dating } = await wiz.call("onLoading", body);
+        this.items = dating;
         await this.service.render();
+        console.log(dating);
+        if (code != 200) return;
     }
 
-    // public async search() {
-    //     this.query.page = 1;
-    //     var q = thisect.entries(angular.copy(this.query)).map(e => e.join('=')).join('&');
-    //     location.href = "?" + q;
-    // }
+    public async saveTitle(value) {
+        window.localStorage.setItem('title', value);
+    }
+
 }

@@ -48,6 +48,10 @@ a:hover {
     cursor: pointer;
 }
 
+.assign-num{
+    margin-right: 20px;
+}
+
 html {
     box-sizing: border-box;
 }
@@ -65,6 +69,8 @@ html {
     border: 1px solid #ccc;
 }
 
-.name-choice,.assign-number,.due-date{
+.name-choice,
+.assign-number,
+.due-date {
     margin-top: 20px;
 }
