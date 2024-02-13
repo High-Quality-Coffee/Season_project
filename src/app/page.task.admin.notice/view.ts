@@ -14,10 +14,6 @@ export class Component implements OnInit {
         end: 1,
         current: 1,
     };
-    public text: string = "";
-    public category: string;
-    public title: string = "";
-    public category_list = [{ id: "notice", name: "공지사항" }, { id: "request", name: "요청사항" }, { id: "free", name: "자유게시판" }];
 
     constructor(
         public route: ActivatedRoute,

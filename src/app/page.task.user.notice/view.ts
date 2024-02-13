@@ -16,12 +16,6 @@ export class Component implements OnInit {
         this.onLoad();
         await this.service.init();
     }
-    public go(item) {
-        const obj = {
-            category: item,
-        }
-        this.service.href([`/community/list`, obj]);
-    }
 
     public async onLoad() {
         let email = {
@@ -32,6 +26,8 @@ export class Component implements OnInit {
         let body = {
             list: data[0].assignName
         }
+        await this.service.render();
+
         const { coding, dating } = await wiz.call("onLoading", body);
         this.items = dating;
         await this.service.render();

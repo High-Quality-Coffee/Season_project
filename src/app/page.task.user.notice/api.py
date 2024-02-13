@@ -15,11 +15,15 @@ def onLoad():
 
 
 def onLoading():
-    rowsArr=[]
+    rowsArr=[];
     arys=wiz.request.query("list",True)
     arys=json.loads(arys)
     for ary in arys:
+        where=dict(
+            title=ary,
+            fields="id,title"
+        )
         rowsArr.append(db.get(title=ary))
-   
+
     print(rowsArr)
     wiz.response.status(200,rowsArr)
