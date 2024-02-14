@@ -7,7 +7,7 @@
     "category": "",
     "preview": "/result/admin",
     "controller": "base",
-    "layout": "layout.navbar",
+    "layout": "layout.none",
     "ng.build": {
         "id": "page.result.admin",
         "name": "PageResultAdminComponent",
