@@ -7,6 +7,7 @@ export class Component implements OnInit {
     public items: any;
     public body: any;
     public pubdata: any;
+    public duedates: any;
 
     constructor(
         public route: ActivatedRoute,
@@ -25,20 +26,20 @@ export class Component implements OnInit {
         }
         const { code, data } = await wiz.call("onLoad", email);
         this.pubdata = data[0].assignName;
+        this.duedates=data[0].duedate;
         //let list = JSON.parse(data[0].assignName);
         this.body = {
             list: this.pubdata
         }
-        if (code != 200) return;
+        if (code != 200)
+            return;
         await this.service.render();
         this.onLoading();
     }
 
     public async onLoading() {
-        const { coding, dating } = await wiz.call("onLoading", this.body);
-        this.items = dating;
-        console.log(this.items);
-        console.log(coding);
+        const { code, data } = await wiz.call("onLoading", this.body);
+        this.items = data;
         if (coding != 200) return;
         await this.service.render();
     }

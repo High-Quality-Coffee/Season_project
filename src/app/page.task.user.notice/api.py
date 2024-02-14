@@ -7,7 +7,7 @@ def onLoad():
     email=wiz.request.query("email",True)
     where=dict(
         email=email,
-        fields="assignName"
+        fields="assignName,duedate"
     )
 
     rows=userdb.rows(**where)
