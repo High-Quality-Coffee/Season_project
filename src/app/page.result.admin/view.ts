@@ -7,6 +7,13 @@ export class Component implements OnInit {
     @Input() title: any;
     public list: any;
 
+
+    public body = {
+        sw: 'SW개발센터',
+        rnd: 'R&D센터',
+        season: '기술사업부'
+    }
+
     constructor(
         public route: ActivatedRoute,
         public service: Service,
@@ -18,15 +25,28 @@ export class Component implements OnInit {
     }
 
     public async onLoad() {
-        let body = {
-            center: 'dev',
-        }
-        const { code, data } = await wiz.call("search", body);
+        const { code, data } = await wiz.call("search", this.body);
         this.list = data;
-        console.log(this.list);
         await this.service.render();
         if (code != 200) return;
 
+    }
+
+    public async category(value) {
+        let num;
+        if ('sw' == value) num = this.body.sw;
+        else if ('rnd' == value) num = this.body.rnd;
+        else num = this.body.season;
+
+        let obj = {
+            category: num
+        }
+
+        const { code, data } = await wiz.call("category", obj);
+        this.list = data;
+
+        await this.service.render();
+        if (code != 200) return;
     }
 
 

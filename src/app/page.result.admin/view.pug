@@ -3,11 +3,13 @@
     nav
         ul
             li
-                a 기술사업부
+                a((click)="onLoad()") 전체보기
             li
-                a R&D센터
+                a((click)="category('season')") 기술사업부
             li
-                a SW개발센터
+                a((click)="category('rnd')") R&D센터
+            li
+                a((click)="category('sw')") SW개발센터
 
 
 .card.border-0.table-card.round-0.shadow-none.px-0
