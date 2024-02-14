@@ -51,5 +51,9 @@ def save():
     user["title"]=wiz.request.query('title',True)
     user["content"]=wiz.request.query('content',True)
 
+    current_datetime =datetime.datetime.now()
+    current_date = current_datetime.strftime("%Y-%m-%d")
+    user["created"]=current_date
+
     db.insert(user)
     wiz.response.status(200,True)

@@ -3,20 +3,22 @@
                 table.table.table-center.table-nowrap.card-table
                     thead
                         tr
-                            th.text-uppercase 이름
-                            th.text-uppercase 제출
-                            th.text-uppercase.text-center 파일
-                            th.text-uppercase.text-center 점수
-                            th.text-uppercase.text-center 피드백
+                            th.text-center 이름
+                            th.text-center 지원부서
+                            th.text-center 제출
+                            th.text-center 파일
+                            th.text-center 점수
+                            th.text-center 피드백
                     tbody
                         tr(*ngIf="!list")
                             td.text-center(colspan=6) 지원자가 없습니다.
                         ng-container(*ngIf="list")
                             tr(*ngFor="let item of list")
-                                td.text-center.col-3 {{ item.name }}
-                                td.text-center.col-3
-                                td.text-center.col-3
-                                td.text-center.col-3
-                                td.text-center.col-3 
+                                td.text-center {{ item.name }}
+                                td.text-center {{ item.center }}
+                                td.text-center
+                                td.text-center
+                                td.text-center
+                                td.text-center 
                                 
                                

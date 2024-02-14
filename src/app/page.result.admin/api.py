@@ -12,5 +12,4 @@ def search():
     )
 
     rows=db.rows(**where)
-    print(rows[0])
     wiz.response.status(200,rows)

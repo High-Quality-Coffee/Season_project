@@ -57,7 +57,7 @@
                                     td
                                         a.text-navy(routerLink="/task/admin/post", (click)="saveTitle(item.title)") {{item.title.length == 0 ? "제목없음" : item.title}}
                                     td.text-center.col-3 admin
-                                    td.text-center.col-3 null
+                                    td.text-center.col-3 {{item.created}}
                     
 
     

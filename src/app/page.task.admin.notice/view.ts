@@ -33,6 +33,7 @@ export class Component implements OnInit {
         }
         const { code, data } = await wiz.call("onLoaD", body);
         this.lisT = data;
+        console.log(this.lisT);
         await this.service.render();
         if (code != 200) return;
     }

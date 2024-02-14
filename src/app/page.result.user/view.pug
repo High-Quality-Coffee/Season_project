@@ -3,10 +3,10 @@
                 table.table.table-center.table-nowrap.card-table
                     thead
                         tr
-                            th.text-uppercase 이름
-                            th.text-uppercase 파일
-                            th.text-uppercase.text-center 제출여부
-                            th.text-uppercase.text-center 마감기한
+                            th.text-center 이름
+                            th.text-center 파일
+                            th.text-center 제출여부
+                            th.text-center 마감기한
 
                     tbody
                         tr(*ngFor="let item of list")
@@ -14,19 +14,20 @@
                             td.text-center 없음
                             td.text-center 제출 안함
                             td.text-center {{item.duedate}}
-
+                    
+                    thead
                         tr
-                            th.text-uppercase 면접날짜
-                            th.text-uppercase 이메일
-                            th.text-uppercase 연락처
-                            th.text-uppercase 지원부서
-                            
+                            th.text-center 면접날짜
+                            th.text-center 이메일
+                            th.text-center 연락처
+                            th.text-center 지원부서
+                                
                     tbody
                         tr(*ngFor="let item of list")
-                            th.text-uppercase {{item.interview}}
-                            th.text-uppercase {{item.email}}
-                            th.text-uppercase {{item.phone}}
-                            th.text-uppercase {{item.center}}
+                            th.text-center {{item.interview}}
+                            th.text-center {{item.email}}
+                            th.text-center {{item.phone}}
+                            th.text-center {{item.center}}
 
 
 

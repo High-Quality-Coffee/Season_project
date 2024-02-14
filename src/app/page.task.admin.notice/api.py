@@ -31,7 +31,7 @@ def onLoaD():
     email=wiz.request.query("email",True)
 
     where=dict(
-        fields="id,title"
+        fields="id,title,created,updated"
     )
 
     rows=db.rows(**where)

@@ -5,6 +5,8 @@ import { Menu } from '@wiz/libs/menu';
 
 export class Component implements OnInit {
     public items: any;
+    public body: any;
+    public pubdata: any;
 
     constructor(
         public route: ActivatedRoute,
@@ -22,17 +24,23 @@ export class Component implements OnInit {
             email: window.localStorage.getItem('email')
         }
         const { code, data } = await wiz.call("onLoad", email);
+        this.pubdata = data[0].assignName;
         //let list = JSON.parse(data[0].assignName);
-        let body = {
-            list: data[0].assignName
+        this.body = {
+            list: this.pubdata
         }
-        await this.service.render();
-
-        const { coding, dating } = await wiz.call("onLoading", body);
-        this.items = dating;
-        await this.service.render();
-        console.log(dating);
         if (code != 200) return;
+        await this.service.render();
+        this.onLoading();
+    }
+
+    public async onLoading() {
+        const { coding, dating } = await wiz.call("onLoading", this.body);
+        this.items = dating;
+        console.log(this.items);
+        console.log(coding);
+        if (coding != 200) return;
+        await this.service.render();
     }
 
     public async saveTitle(value) {

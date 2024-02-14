@@ -12,8 +12,8 @@ class Model(base):
     title = pw.CharField(index=True, max_length=192)
     content = pw.TextField()
     files = pw.TextField()
-    created = pw.DateTimeField(index=True)
-    updated = pw.DateTimeField(index=True)
+    created = pw.CharField(index=True,max_length=32)
+    updated = pw.CharField(index=True,max_length=16)
 
 
 #     CREATE TABLE `community` (
