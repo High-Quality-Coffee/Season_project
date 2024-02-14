@@ -6,6 +6,7 @@ import { Menu } from '@wiz/libs/menu';
 export class Component implements OnInit {
     @Input() title: any;
     public list: any;
+    public score: any;
 
 
     public body = {
