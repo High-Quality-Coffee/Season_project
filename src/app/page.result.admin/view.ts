@@ -50,5 +50,15 @@ export class Component implements OnInit {
         if (code != 200) return;
     }
 
+    public async input_score(val) {
+        if (val != "close")
+            document.getElementById("modal-score").style.display = "block";
+        else if (val === "close") {
+            document.getElementById("modal-score").style.display = "none";
+            let input=document.getElementById("content-write");
+            input.value=null;
+        }
+    }
+
 
 }

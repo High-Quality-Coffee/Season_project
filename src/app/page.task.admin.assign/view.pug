@@ -13,7 +13,7 @@
     .name-choice
         .name
             h2 이름
-        input.no(type="text", placeholder="이름을 입력하세요", [(ngModel)]="data.name")
+        input.form-control(type="text", placeholder="이름을 입력하세요", [(ngModel)]="data.name")
 
     .assign-number
         .number
@@ -29,21 +29,21 @@
     .due-date
         .date
             h2 면접날짜 (e.g.2018-07-03 21:40)
-        input.no(type="text", placeholder="면접날짜를 입력하세요", [(ngModel)]="data.interview")
+        input.form-control(type="datetime-local", placeholder="면접날짜를 입력하세요", [(ngModel)]="data.interview")
 
     .user_email
         .email
             h2 이메일
-        input.no(type="text", placeholder="이메일을 입력하세요", [(ngModel)]="data.email")
+        input.form-control(type="text", placeholder="이메일을 입력하세요", [(ngModel)]="data.email")
     
     .user_phone
         .phone
             h2 연락처
-        input.no(type="text", placeholder="연락처를 입력하세요", [(ngModel)]="data.phone")
+        input.form-control(type="text", placeholder="연락처를 입력하세요", [(ngModel)]="data.phone")
     
     .user_role
         .phone
             h2 지원 부서 (기술사업부, R&D센터, SW개발센터)
-        input.no(type="text", placeholder="지원부서를 입력하세요", [(ngModel)]="data.center")
+        input.form-control(type="text", placeholder="지원부서를 입력하세요", [(ngModel)]="data.center")
 
         

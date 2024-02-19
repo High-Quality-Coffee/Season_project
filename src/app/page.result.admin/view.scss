@@ -74,3 +74,49 @@ html {
 .due-date {
     margin-top: 20px;
 }
+
+
+
+#modal-score {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+}
+
+#modal-score h2 {
+    margin: 0;
+}
+
+#modal-score button {
+    display: inline-block;
+    width: 100px;
+    margin-left: calc(100% - 100px - 10px);
+}
+
+#modal-score .modal-content {
+    width: 300px;
+    margin: 100px 100px;
+    padding: 20px 10px;
+    background: #fff;
+    border: 2px solid #666;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#modal-score .modal-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    /* Ensure it appears on top of other content */
+}

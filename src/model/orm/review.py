@@ -7,6 +7,7 @@ class Model(base):
         db_table = 'review'
     
     id=pw.AutoField(primary_key=True)
+    name=pw.CharField(max_length=32)
     user_id=pw.IntegerField()
     assignment_id=pw.IntegerField()
     content=pw.TextField()
