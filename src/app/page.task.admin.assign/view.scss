@@ -52,6 +52,10 @@ a:hover {
     margin-right: 20px;
 }
 
+.form-control {
+    width: 20%;
+}
+
 html {
     box-sizing: border-box;
 }
@@ -71,10 +75,13 @@ html {
 
 .name-choice,
 .assign-number,
-.due-date {
+.due-date,
+.user_email,
+.user_phone,
+.user_role {
     margin-top: 20px;
 }
 
-.part{
+.part {
     margin-right: 20px;
 }
