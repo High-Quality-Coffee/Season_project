@@ -55,8 +55,11 @@ export class Component implements OnInit {
             document.getElementById("modal-score").style.display = "block";
         else if (val === "close") {
             document.getElementById("modal-score").style.display = "none";
-            let input=document.getElementById("content-write");
-            input.value=null;
+            let input = document.getElementById("content-write");
+            input.value = null;
+        }
+        else if (val == "save") {
+            const { code, data } = await wiz.call("input_score", { result_val: this.score });
         }
     }
 

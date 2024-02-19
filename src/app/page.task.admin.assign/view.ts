@@ -34,10 +34,13 @@ export class Component implements OnInit {
 
     public async assign() {
         //let user = JSON.parse(JSON.stringify(this.data));
-        this.data.assignName=JSON.stringify(this.data.assignName);
+        this.data.assignName = JSON.stringify(this.data.assignName);
         let user = this.data;
+        console.log(user);
         let { code, data } = await wiz.call("assign", user);
         if (code == 200) {
+            let input = document.getElementById("no");
+            input.value = null;
             await this.service.render();
             location.href = "result/admin";
             return;
@@ -58,5 +61,14 @@ export class Component implements OnInit {
         this.list = data;
         await this.service.render();
         if (code != 200) return;
+    }
+
+    public async department(value) {
+        if (value == "season")
+            this.data.center="기술사업부";
+        else if(value=="rnd")
+            this.data.center="R&D센터";
+        else
+            this.data.center="SW개발센터";
     }
 }

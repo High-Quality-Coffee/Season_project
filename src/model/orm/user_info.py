@@ -20,9 +20,9 @@ class Model(base):
     password=base.PasswordField()
     center=base.TextField()
     role=pw.CharField(max_length=11)
-    interview=pw.CharField(max_length=32)
+    interview=pw.DateTimeField()
     assignName=pw.CharField(max_length=64)
-    duedate=pw.CharField(max_length=32)
+    duedate=pw.DateTimeField()
     created=pw.CharField(max_length=11)
     #IntegerField() 는 max_length 지정해줄 필요 없음 - 지정하면 오류발생
     modified=pw.IntegerField()

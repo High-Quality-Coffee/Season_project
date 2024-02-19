@@ -8,6 +8,7 @@ class Model(base):
     
     id=pw.AutoField(primary_key=True)
     name=pw.CharField(max_length=32)
+    email=pw.CharField(max_length=64)
     user_id=pw.IntegerField()
     assignment_id=pw.IntegerField()
     content=pw.TextField()

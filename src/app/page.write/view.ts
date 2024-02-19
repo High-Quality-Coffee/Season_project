@@ -112,11 +112,11 @@ export class Component implements OnInit {
     }
 
     public async save() {
-        let user=this.assign;
-        let {code, data}=await wiz.call("save",user);
-        if(code==200){
+        let user = this.assign;
+        let { code, data } = await wiz.call("save", user);
+        if (code == 200) {
             await this.service.render();
-            location.href="/task/admin/notice"
+            location.href = "/task/admin/notice"
             return;
         }
 

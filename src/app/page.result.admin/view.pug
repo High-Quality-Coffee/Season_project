@@ -10,11 +10,15 @@
                 a((click)="category('rnd')") R&D센터
             li
                 a((click)="category('sw')") SW개발센터
+            li
+                a(routerLink="/task/admin/assign") 계정/과제 할당
 
 #modal-score
     .modal-content 모달창
-        input#content-write(type="text", placeholder="점수를 입력하세요")
-        button.modal-close((click)="input_score('close')") 창닫기
+        input#content-write(type="text", placeholder="점수를 입력하세요", [(ngModel)]="score")
+        .modal-btn
+            button.modal-save((click)="input_score('save')") 저장하기
+            button.modal-close((click)="input_score('close')") 창닫기
     .modal-layer
 
 .card.border-0.table-card.round-0.shadow-none.px-0
@@ -23,9 +27,9 @@
                     thead
                         tr
                             th.text-center 이름
+                            th.text-center 이메일
                             th.text-center 지원부서
                             th.text-center 제출
-                            th.text-center 파일
                             th.text-center 점수
                             th.text-center 피드백
                     tbody
@@ -34,8 +38,8 @@
                         ng-container(*ngIf="list")
                             tr(*ngFor="let item of list")
                                 td.text-center {{ item.name }}
+                                td.text-center {{item.email}}
                                 td.text-center {{ item.center }}
-                                td.text-center
                                 td.text-center
                                 td.text-center(*ngIf="!score" , (click)="input_score('True')") 점수입력
                                 td.text-center(*ngIf="score") {{score}}

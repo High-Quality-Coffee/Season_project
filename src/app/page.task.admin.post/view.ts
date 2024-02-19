@@ -25,6 +25,21 @@ export class Component implements OnInit {
         console.log(data);
         this.post = data;
 
+        // 에디터 붙이기
+        const EDITOR_ID = 'textarea#editor';
+        this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
+            toolbar: {
+                items: 'heading | bold italic strikethrough underline | fontColor highlight fontBackgroundColor | bulletedList numberedList todoList | outdent indent | insertTable imageUpload | link blockQuote code codeBlock'.split(' '),
+                shouldNotGroupWhenFull: true
+            },
+            removePlugins: ["MediaEmbedToolbar", "Markdown"],
+            table: ClassicEditor.defaultConfig.table,
+            simpleUpload: {
+                uploadUrl: '/file/upload/' + this.post.category + "/file"
+            }
+        });
+        this.editor.data.set(this.post.content);
+
         await this.service.render();
         if (code != 200) return;
     }

@@ -120,3 +120,11 @@ html {
     z-index: -1;
     /* Ensure it appears on top of other content */
 }
+
+.modal-btn{
+    text-align: center;
+}
+
+.modal-btn button{
+    display: inline-block;
+}
