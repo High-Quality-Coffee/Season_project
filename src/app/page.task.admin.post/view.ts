@@ -96,7 +96,6 @@ export class Component implements OnInit {
     public async onLoad() {
         let index = window.localStorage.getItem("title");
         const { code, data } = await wiz.call("onLoad", { title: index });
-        console.log(data);
         this.post = data;
 
         // 에디터 붙이기

@@ -2,14 +2,20 @@ h1 {
     display: inline-block;
     vertical-align: middle;
     color: white;
-    margin: 0.5rem;
+    margin: 0.2rem;
     padding: 0;
 }
 
 nav {
     display: inline-block;
     vertical-align: middle;
+    margin: 0.4rem;
     float: right;
+}
+
+p {
+    margin: 0.2rem;
+    color: white;
 }
 
 ul {
@@ -48,8 +54,8 @@ a:hover {
     cursor: pointer;
 }
 
-.yellowgreen{
-    background:yellowgreen;
+.yellowgreen {
+    background: yellowgreen;
 }
 
 .assign-num {
@@ -133,4 +139,10 @@ html {
 
 .modal-btn button {
     float: right;
+}
+
+.feedback{
+    color: cornflowerblue;
+    font-weight: 800;
+    cursor: pointer;
 }

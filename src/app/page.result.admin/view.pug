@@ -1,5 +1,5 @@
 .header
-    h1 USER LIST
+    h1 지원자 리스트
     nav
         ul
             li
@@ -13,7 +13,11 @@
             li
                 a(routerLink="/task/admin/assign") 계정/과제 할당
             li
+                a(routerLink="/task/admin/notice") 등록된 과제
+            li
                 a(routerLink="/login") 로그아웃
+    
+    p 지원자의 과제 제출 현황과 점수설정, 피드백 확인이 가능합니다
 
 #modal-score
     .modal-content 점수입력
@@ -44,7 +48,7 @@
                                 td.text-center {{ item.center }}
                                 td.text-center
                                 td.text-center((click)="input_score(item.email)") {{item.score}}  
-                                td.text-center((click)="input_feedback(item.email)") 피드백 보기
+                                td.text-center.feedback((click)="input_feedback(item.email)") 피드백 보기
                         
                     
         
