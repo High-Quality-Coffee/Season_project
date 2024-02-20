@@ -12,18 +12,20 @@
                 table.table.table-hover.board-table.box-shadow.br-10
                     thead
                         tr
-                            th.text-center.col-3.btlr 번호
-                            th.text-center 제목
+                            th.text-center 번호
+                            th.text-center.col-3 제목
                             th.text-center.col-3 작성자
                             th.text-center.col-3.btrr 마감일
+                            th.text-center.col-3.btrr 제출여부
                     tbody
                         tr(*ngIf="!items")
                             td.p-6.text-center(colspan=5) 할당된 과제가 없습니다.
                     
                         ng-container(*ngIf="items")
                             tr(*ngFor="let item of items;let i = index")
-                                td.text-center.col-3 {{ item.id }}
+                                td.text-center {{ item.id }}
                                 td
                                     a.text-navy(routerLink="/task/admin/post", (click)="saveTitle(item.title)") {{item.title.length == 0 ? "제목없음" : item.title}}
                                 td.text-center.col-3 admin
                                 td.text-center.col-3 {{ duedates }}
+                                td.text-center.col-3 제출안함

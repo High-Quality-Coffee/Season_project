@@ -1,6 +1,7 @@
 import math
 
 db=wiz.model("orm").use("community")
+userdb=wiz.model("orm").use("user_info")
 
 def search():
     page = int(wiz.request.query("page", True))
@@ -36,3 +37,11 @@ def onLoaD():
 
     rows=db.rows(**where)
     wiz.response.status(200,rows)
+
+
+def center():
+    email=wiz.request.query("email",True)
+
+    center=userdb.get(email=email).center
+    wiz.response.status(200,center)
+

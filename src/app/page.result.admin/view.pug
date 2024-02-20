@@ -3,13 +3,13 @@
     nav
         ul
             li
-                a((click)="onLoad()") 전체보기
+                a([ngClass]="{'yellowgreen':center_category=='전체보기'}",(click)="onLoad()") 전체보기
             li
-                a((click)="category('season')") 기술사업부
+                a([ngClass]="{'yellowgreen':center_category=='기술사업부'}",(click)="category('season')") 기술사업부
             li
-                a((click)="category('rnd')") R&D센터
+                a([ngClass]="{'yellowgreen':center_category=='R&D센터'}",(click)="category('rnd')") R&D센터
             li
-                a((click)="category('sw')") SW개발센터
+                a([ngClass]="{'yellowgreen':center_category=='SW개발센터'}",(click)="category('sw')") SW개발센터
             li
                 a(routerLink="/task/admin/assign") 계정/과제 할당
             li
@@ -44,7 +44,7 @@
                                 td.text-center {{ item.center }}
                                 td.text-center
                                 td.text-center((click)="input_score(item.email)") {{item.score}}  
-                                td.text-center
+                                td.text-center((click)="input_feedback(item.email)") 피드백 보기
                         
                     
         

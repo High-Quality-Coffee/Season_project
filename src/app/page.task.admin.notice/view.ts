@@ -35,6 +35,16 @@ export class Component implements OnInit {
         this.lisT = data;
         await this.service.render();
         if (code != 200) return;
+        this.center();
+    }
+
+    public async center() {
+        let user = window.localStorage.getItem('email');
+        let body = {
+            email: user,
+        }
+        const { code, data } = await wiz.call("center", body);
+        window.localStorage.setItem("center",data);
     }
 
     public async saveTitle(value) {

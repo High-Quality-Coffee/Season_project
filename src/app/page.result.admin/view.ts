@@ -8,6 +8,7 @@ export class Component implements OnInit {
     public list: any;
     public score: any;
     public email: any;
+    public center_category: any;
 
 
 
@@ -24,22 +25,43 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        this.onLoad();
+        this.centerLoad();
     }
 
     public async onLoad() {
         const { code, data } = await wiz.call("search", this.body);
         this.list = data;
+        this.center_category = "전체보기";
         await this.service.render();
         if (code != 200) return;
 
     }
 
+    public async centerLoad() {
+        let center = window.localStorage.getItem("center");
+        this.center_category = center;
+        if (center === 'SW개발센터')
+            this.category("sw");
+        else if (center === '기술사업부')
+            this.category("season");
+        else if (center === 'R&D센터')
+            this.category("rnd");
+    }
+
     public async category(value) {
         let num;
-        if ('sw' == value) num = this.body.sw;
-        else if ('rnd' == value) num = this.body.rnd;
-        else num = this.body.season;
+        if ('sw' == value) {
+            num = this.body.sw;
+            this.center_category = num;
+        }
+        else if ('rnd' == value) {
+            num = this.body.rnd;
+            this.center_category = num;
+        }
+        else {
+            num = this.body.season;
+            this.center_category = num;
+        }
 
         let obj = {
             category: num
@@ -70,6 +92,17 @@ export class Component implements OnInit {
             this.ngOnInit();
             if (code != 200) return;
         }
+    }
+
+    public async input_feedback(val) {
+        this.email = val;
+        const { code, data } = await wiz.call("center", { email_obj: this.email });
+        if (data === 'SW개발센터')
+            this.category("sw");
+        else if (data === '기술사업부')
+            this.category("season");
+        else (data === 'R&D센터')
+        this.category("rnd");
     }
 
 
