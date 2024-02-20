@@ -7,6 +7,8 @@ export class Component implements OnInit {
     @Input() title: any;
     public list: any;
     public score: any;
+    public email: any;
+
 
 
     public body = {
@@ -51,15 +53,22 @@ export class Component implements OnInit {
     }
 
     public async input_score(val) {
-        if (val != "close")
+        if (val != "close" && val != "save") {
             document.getElementById("modal-score").style.display = "block";
+            this.email = val;
+        }
         else if (val === "close") {
             document.getElementById("modal-score").style.display = "none";
             let input = document.getElementById("content-write");
             input.value = null;
         }
-        else if (val == "save") {
-            const { code, data } = await wiz.call("input_score", { result_val: this.score });
+        else if (val === "save") {
+            const { code, data } = await wiz.call("save", { score_obj: this.score, email_obj: this.email });
+            document.getElementById("modal-score").style.display = "none";
+            let input = document.getElementById("content-write");
+            input.value = null;
+            this.ngOnInit();
+            if (code != 200) return;
         }
     }
 

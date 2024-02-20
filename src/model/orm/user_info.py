@@ -22,6 +22,7 @@ class Model(base):
     role=pw.CharField(max_length=11)
     interview=pw.DateTimeField()
     assignName=pw.CharField(max_length=64)
+    score=pw.IntegerField()
     duedate=pw.DateTimeField()
     created=pw.CharField(max_length=11)
     #IntegerField() 는 max_length 지정해줄 필요 없음 - 지정하면 오류발생

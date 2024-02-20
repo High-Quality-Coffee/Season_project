@@ -16,11 +16,11 @@
                 a(routerLink="/login") 로그아웃
 
 #modal-score
-    .modal-content 모달창
+    .modal-content 점수입력
         input#content-write(type="text", placeholder="점수를 입력하세요", [(ngModel)]="score")
         .modal-btn
-            button.modal-save((click)="input_score('save')") 저장하기
             button.modal-close((click)="input_score('close')") 창닫기
+            button.modal-save((click)="input_score('save')") 저장하기
     .modal-layer
 
 .card.border-0.table-card.round-0.shadow-none.px-0
@@ -43,8 +43,7 @@
                                 td.text-center {{item.email}}
                                 td.text-center {{ item.center }}
                                 td.text-center
-                                td.text-center(*ngIf="!score" , (click)="input_score('True')") 점수입력
-                                td.text-center(*ngIf="score") {{score}}
+                                td.text-center((click)="input_score(item.email)") {{item.score}}  
                                 td.text-center
                         
                     

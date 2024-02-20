@@ -76,7 +76,6 @@ html {
 }
 
 
-
 #modal-score {
     display: none;
     position: fixed;
@@ -88,13 +87,7 @@ html {
 }
 
 #modal-score h2 {
-    margin: 0;
-}
-
-#modal-score button {
-    display: inline-block;
-    width: 100px;
-    margin-left: calc(100% - 100px - 10px);
+    margin: 10px;
 }
 
 #modal-score .modal-content {
@@ -121,10 +114,19 @@ html {
     /* Ensure it appears on top of other content */
 }
 
-.modal-btn{
+#content-write{
+    margin-top: 10px;
+}
+
+.modal-btn {
+    margin-top: 20px;
     text-align: center;
 }
 
-.modal-btn button{
-    display: inline-block;
+.modal-save {
+    margin-right: 10px;
+}
+
+.modal-btn button {
+    float: right;
 }
