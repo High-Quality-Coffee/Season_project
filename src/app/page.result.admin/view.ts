@@ -96,13 +96,9 @@ export class Component implements OnInit {
 
     public async input_feedback(val) {
         this.email = val;
-        const { code, data } = await wiz.call("center", { email_obj: this.email });
-        if (data === 'SW개발센터')
-            this.category("sw");
-        else if (data === '기술사업부')
-            this.category("season");
-        else (data === 'R&D센터')
-        this.category("rnd");
+
+        location.href="task/admin/feedback";
+
     }
 
 

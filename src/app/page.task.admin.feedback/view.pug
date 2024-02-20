@@ -1,0 +1,38 @@
+.header
+    h1 FEEDBACK LIST
+    nav
+        ul
+            li
+                a(routerLink="result/admin") 뒤로가기
+            li
+                a(routerLink="/login") 로그아웃
+
+
+.card.border-0.table-card.round-0.shadow-none.px-0
+            .table-responsive.round-0
+                table.table.table-center.table-nowrap.card-table
+                    thead
+                        tr
+                            th.text-center 이름
+                            th.text-center 이메일
+                            th.text-center 지원부서
+                            th.text-center 제출
+                            th.text-center 점수
+                            th.text-center 피드백
+                    tbody
+                        tr(*ngIf="!list")
+                            td.text-center(colspan=6) 피드백이 없습니다.
+                        ng-container(*ngIf="list")
+                            tr(*ngFor="let item of list")
+                                td.text-center {{ item.name }}
+                                td.text-center {{item.email}}
+                                td.text-center {{ item.center }}
+                                td.text-center
+                                td.text-center() {{item.score}}  
+                                td.text-center() 피드백 보기
+                        
+                    
+        
+
+                                
+                               
