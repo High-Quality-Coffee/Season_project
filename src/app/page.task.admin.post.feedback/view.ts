@@ -70,7 +70,8 @@ export class Component implements OnInit {
 
     public async onLoad() {
         let email = window.localStorage.getItem("user_email");
-        const { code, data } = await wiz.call("onLoad", { user_email: email });
+        let title = window.localStorage.getItem("fdb_title");
+        const { code, data } = await wiz.call("onLoad", { user_email: email, fdb_title: title });
         this.list = data;
         console.log(this.list);
         if (code != 200) return;

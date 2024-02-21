@@ -29,7 +29,7 @@
                         ng-container(*ngIf="list")
                             tr(*ngFor="let item of list")
                                 td.text-center {{item.id}}
-                                td.text-center.title(routerLink="/task/admin/post/feedback") {{item.title}}
+                                td.text-center.title(routerLink="/task/admin/post/feedback" , (click)="send_title(item.title)") {{item.title}}
                                 td.text-center {{item.writer}}
                                 td.text-center {{item.created}}
                                 td.text-center {{item.user_name}}

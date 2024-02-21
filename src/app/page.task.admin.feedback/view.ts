@@ -20,16 +20,18 @@ export class Component implements OnInit {
     public async onLoad() {
         let email = window.localStorage.getItem("user_email");
         const { code, data } = await wiz.call("onLoad", { user_email: email });
-        if(data.length==0)
-            this.list=undefined;
+        if (data.length == 0)
+            this.list = undefined;
         else
-            this.list=data;
+            this.list = data;
         console.log(this.list);
 
         await this.service.render();
         if (code != 200) return;
     }
 
-
+    public send_title(val) {
+        window.localStorage.setItem("fdb_title",val);
+    }
 
 }
