@@ -21,8 +21,8 @@
             td.p-6.text-center(colspan=5) 게시글이 없습니다.
 
         ng-container(*ngIf="list")
-            tr(*ngFor="let item of list;let i = index", style="display:inline")
-                button.assign-num.text-center((click)="saveAssign(item.title)") {{ item.title }}
+            tr.frame(*ngFor="let item of list;let i = index", style="display:inline")
+                button.custom-btn.btn-1((click)="saveAssign(item.title)") {{ item.title }}
     
     .due-date
         .date
@@ -42,7 +42,7 @@
     .user_role
         .role
             h2 지원 부서 (기술사업부, R&D센터, SW개발센터)
-            button.part((click)="department('season')") 기술사업부
-            button.part((click)="department('rnd')") R&D센터
-            button.part((click)="department('sw')") SW개발센터
+            button.custom-btn.btn-1((click)="department('season')") 기술사업부
+            button.custom-btn.btn-1((click)="department('rnd')") R&D센터
+            button.custom-btn.btn-1((click)="department('sw')") SW개발센터
         
