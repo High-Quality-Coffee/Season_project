@@ -11,6 +11,8 @@ export class Component implements OnInit {
     public fd = new FormData();
     public list: any;
 
+    public data_fdb = { title: "", content: "", writer: "", files: [], user_name: "", user_email: "" }
+
     constructor(
         public route: ActivatedRoute,
         public service: Service,
@@ -18,20 +20,22 @@ export class Component implements OnInit {
 
     public async ngOnInit() {
         this.onLoad();
+        this.init();
     }
 
     public async init() {
-        this.post.id = WizRoute.segment.id;
-        this.post.category = WizRoute.segment.category;
-        console.log(this.category_list.find(e => e.id === this.post.category))
-        this.title = this.category_list.find(e => e.id === this.post.category).name
-        if (this.post.id !== "new") {
-            const { code, data } = await wiz.call("load", { id: this.post.id });
-            this.post = data;
-            this.post.files = JSON.parse(data.files.replace(/'/g, '"'));
-            await this.service.render();
-        }
-        else this.post.id = ""
+        // this.post.id = WizRoute.segment.id;
+        // this.post.category = WizRoute.segment.category;
+        // this.title = this.category_list.find(e => e.id === this.post.category).name
+        // if (this.post.id !== "new") {
+        //     const { code, data } = await wiz.call("load", { id: this.post.id });
+        //     this.post = data;
+        //     this.post.files = JSON.parse(data.files.replace(/'/g, '"'));
+        //     await this.service.render();
+        // }
+        // else this.post.id = ""
+
+        //에디터 붙이기
         const EDITOR_ID = 'textarea#editor';
         this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
             toolbar: {
@@ -45,6 +49,7 @@ export class Component implements OnInit {
             }
         });
         this.editor.data.set(this.post.content);
+        console.log(this.post.content);
         await this.service.render();
     }
 
@@ -95,26 +100,20 @@ export class Component implements OnInit {
 
 
     public async onLoad() {
-        let index = window.localStorage.getItem("title");
-        const { code, data } = await wiz.call("onLoad", { title: index });
-        this.post = data;
-
-        const EDITOR_ID = 'textarea#editor';
-        this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
-            toolbar: {
-                items: 'heading | bold italic strikethrough underline | fontColor highlight fontBackgroundColor | bulletedList numberedList todoList | outdent indent | insertTable imageUpload | link blockQuote code codeBlock'.split(' '),
-                shouldNotGroupWhenFull: true
-            },
-            removePlugins: ["MediaEmbedToolbar", "Markdown"],
-            table: ClassicEditor.defaultConfig.table,
-            simpleUpload: {
-                uploadUrl: '/file/upload/' + this.post.category + "/file"
-            }
-        });
-        this.editor.data.set(this.post.content);
-        await this.service.render();
+        let email = window.localStorage.getItem("user_email");
+        const { code, data } = await wiz.call("onLoad", { user_email: email });
+        this.data_fdb.user_name = data;
+        this.data_fdb.user_email = email;
     }
 
+
+    public async feedback_save() {
+        const { code, data } = await wiz.call("feedback_save", this.data_fdb);
+        console.log(this.post.content);
+        if (code != 200) return;
+        location.href = "/task/admin/feedback";
+        
+    }
 
 
 } 

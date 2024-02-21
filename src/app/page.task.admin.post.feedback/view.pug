@@ -1,16 +1,18 @@
 .header
-    h1 Assignment
+    h1 Feedback
     nav
         ul
             li
                 a(routerLink="/task/admin/notice") 뒤로가기
+    p {{list.user_name}} 지원자를 대상으로 한 피드백 입니다.
+    
 .card-body
     .info-form.row.first-child.p-3
         .col-md-8
-            h3.m-0(style="font-size: 20px; line-height: 24px;") 제목 :  {{post.title}}
+            h3.m-0(style="font-size: 20px; line-height: 24px;") 제목 : {{ list.title }}
         .col-md-3.text-right
-            .btn.btn-sm.btn-outline-orange 작성자
-            span.ml-3 admin
+            .btn.btn-sm.btn-outline-orange 작성자 
+            span(style="margin-left: 10px;") {{list.writer}}
     
     .info-form.row.ml-3(*ngIf="post.files && post.files.length > 0")
         .col-md-1
@@ -21,8 +23,7 @@
                     a(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
     .hr.m-0
     .editor-area.mt-4.mb-4
-        // textarea#editor([(ngModel)]="post.content")
-        textarea#editor {{post.content}}
+        textarea#editor {{list.content}}
     .info-form.row
             .col-md-8
                 form#file

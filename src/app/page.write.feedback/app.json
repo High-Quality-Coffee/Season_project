@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.write.feedback",
+    "title": "write/feedback",
+    "namespace": "write.feedback",
+    "viewuri": "/write/feedback",
+    "category": "",
+    "preview": "/write/feedback",
+    "controller": "base",
+    "layout": "layout.none",
+    "ng.build": {
+        "id": "page.write.feedback",
+        "name": "PageWriteFeedbackComponent",
+        "path": "./page.write.feedback/page.write.feedback.component"
+    },
+    "ng": {
+        "selector": "wiz-page-write-feedback",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-write-feedback()"
+}

@@ -11,6 +11,8 @@ export class Component implements OnInit {
     public fd = new FormData();
     public list: any;
 
+
+
     constructor(
         public route: ActivatedRoute,
         public service: Service,
@@ -18,34 +20,6 @@ export class Component implements OnInit {
 
     public async ngOnInit() {
         this.onLoad();
-    }
-
-    public async init() {
-        this.post.id = WizRoute.segment.id;
-        this.post.category = WizRoute.segment.category;
-        console.log(this.category_list.find(e => e.id === this.post.category))
-        this.title = this.category_list.find(e => e.id === this.post.category).name
-        if (this.post.id !== "new") {
-            const { code, data } = await wiz.call("load", { id: this.post.id });
-            this.post = data;
-            this.post.files = JSON.parse(data.files.replace(/'/g, '"'));
-            await this.service.render();
-        }
-        else this.post.id = ""
-        const EDITOR_ID = 'textarea#editor';
-        this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
-            toolbar: {
-                items: 'heading | bold italic strikethrough underline | fontColor highlight fontBackgroundColor | bulletedList numberedList todoList | outdent indent | insertTable imageUpload | link blockQuote code codeBlock'.split(' '),
-                shouldNotGroupWhenFull: true
-            },
-            removePlugins: ["MediaEmbedToolbar", "Markdown"],
-            table: ClassicEditor.defaultConfig.table,
-            simpleUpload: {
-                uploadUrl: '/file/upload/' + this.post.category + "/file"
-            }
-        });
-        this.editor.data.set(this.post.content);
-        await this.service.render();
     }
 
     public async update() {
@@ -95,23 +69,13 @@ export class Component implements OnInit {
 
 
     public async onLoad() {
-        let index = window.localStorage.getItem("title");
-        const { code, data } = await wiz.call("onLoad", { title: index });
-        this.post = data;
+        let email = window.localStorage.getItem("user_email");
+        const { code, data } = await wiz.call("onLoad", { user_email: email });
+        this.list = data;
+        console.log(this.list);
+        if (code != 200) return;
 
-        const EDITOR_ID = 'textarea#editor';
-        this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
-            toolbar: {
-                items: 'heading | bold italic strikethrough underline | fontColor highlight fontBackgroundColor | bulletedList numberedList todoList | outdent indent | insertTable imageUpload | link blockQuote code codeBlock'.split(' '),
-                shouldNotGroupWhenFull: true
-            },
-            removePlugins: ["MediaEmbedToolbar", "Markdown"],
-            table: ClassicEditor.defaultConfig.table,
-            simpleUpload: {
-                uploadUrl: '/file/upload/' + this.post.category + "/file"
-            }
-        });
-        this.editor.data.set(this.post.content);
+        // this.editor.data.set(this.post.content);
         await this.service.render();
     }
 

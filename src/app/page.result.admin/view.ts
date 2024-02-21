@@ -96,8 +96,8 @@ export class Component implements OnInit {
 
     public async input_feedback(val) {
         this.email = val;
-
-        location.href="task/admin/feedback";
+        window.localStorage.setItem("user_email",this.email);
+        location.href = "task/admin/feedback";
 
     }
 

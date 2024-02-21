@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.task.admin.post.feedback",
+    "title": "task/admin/post/feedback",
+    "namespace": "task.admin.post.feedback",
+    "viewuri": "/task/admin/post/feedback",
+    "category": "",
+    "preview": "/task/admin/post/feedback",
+    "controller": "base",
+    "layout": "layout.none",
+    "ng.build": {
+        "id": "page.task.admin.post.feedback",
+        "name": "PageTaskAdminPostFeedbackComponent",
+        "path": "./page.task.admin.post.feedback/page.task.admin.post.feedback.component"
+    },
+    "ng": {
+        "selector": "wiz-page-task-admin-post-feedback",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-task-admin-post-feedback()"
+}

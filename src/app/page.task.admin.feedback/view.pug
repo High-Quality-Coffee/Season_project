@@ -4,6 +4,8 @@
     nav
         ul
             li
+                a(routerLink="/write/feedback") 작성하기
+            li
                 a(routerLink="/result/admin") 뒤로가기
             li
                 a(routerLink="/login") 로그아웃
@@ -20,15 +22,17 @@
                             th.text-center 제목
                             th.text-center 작성자
                             th.text-center 등록일
+                            th.text-center 피드백 대상
                     tbody
                         tr(*ngIf="!list")
                             td.text-center(colspan=6) 피드백이 없습니다.
                         ng-container(*ngIf="list")
                             tr(*ngFor="let item of list")
-                                td.text-center 
-                                td.text-center 
-                                td.text-center 
-                                td.text-center
+                                td.text-center {{item.id}}
+                                td.text-center.title(routerLink="/task/admin/post/feedback") {{item.title}}
+                                td.text-center {{item.writer}}
+                                td.text-center {{item.created}}
+                                td.text-center {{item.user_name}}
 
                         
                     
