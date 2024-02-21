@@ -24,11 +24,7 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        await this.service.init();
-        this.route.params.subscribe(async ({ category }) => {
-            this.post.category = category;
-            await this.init();
-        })
+        this.init();
     }
 
     public go(item) {
@@ -39,17 +35,6 @@ export class Component implements OnInit {
     }
 
     public async init() {
-        this.post.id = WizRoute.segment.id;
-        this.post.category = WizRoute.segment.category;
-        console.log(this.category_list.find(e => e.id === this.post.category))
-        this.title = this.category_list.find(e => e.id === this.post.category).name
-        if (this.post.id !== "new") {
-            const { code, data } = await wiz.call("load", { id: this.post.id });
-            this.post = data;
-            this.post.files = JSON.parse(data.files.replace(/'/g, '"'));
-            await this.service.render();
-        }
-        else this.post.id = ""
         const EDITOR_ID = 'textarea#editor';
         this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
             toolbar: {
@@ -124,23 +109,6 @@ export class Component implements OnInit {
 
     public async onLoad() {
 
-        // 에디터 붙이기
-        const EDITOR_ID = 'textarea#editor';
-        this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
-            toolbar: {
-                items: 'heading | bold italic strikethrough underline | fontColor highlight fontBackgroundColor | bulletedList numberedList todoList | outdent indent | insertTable imageUpload | link blockQuote code codeBlock'.split(' '),
-                shouldNotGroupWhenFull: true
-            },
-            removePlugins: ["MediaEmbedToolbar", "Markdown"],
-            table: ClassicEditor.defaultConfig.table,
-            simpleUpload: {
-                uploadUrl: '/file/upload/' + this.post.category + "/file"
-            }
-        });
-        this.editor.data.set(this.post.content);
-
-        await this.service.render();
-        if (code != 200) return;
     }
 
 }

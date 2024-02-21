@@ -49,7 +49,6 @@ export class Component implements OnInit {
             }
         });
         this.editor.data.set(this.post.content);
-        console.log(this.post.content);
         await this.service.render();
     }
 
@@ -112,7 +111,7 @@ export class Component implements OnInit {
         console.log(this.post.content);
         if (code != 200) return;
         location.href = "/task/admin/feedback";
-        
+
     }
 
 
