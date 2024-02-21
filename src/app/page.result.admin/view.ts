@@ -89,14 +89,22 @@ export class Component implements OnInit {
             document.getElementById("modal-score").style.display = "none";
             let input = document.getElementById("content-write");
             input.value = null;
-            this.ngOnInit();
+
+            if (data === 'SW개발센터')
+                this.category("sw");
+            else if (data === '기술사업부')
+                this.category("season");
+            else if (data === 'R&D센터')
+                this.category("rnd");
+            await this.service.render();
+
             if (code != 200) return;
         }
     }
 
     public async input_feedback(val) {
         this.email = val;
-        window.localStorage.setItem("user_email",this.email);
+        window.localStorage.setItem("user_email", this.email);
         location.href = "task/admin/feedback";
 
     }

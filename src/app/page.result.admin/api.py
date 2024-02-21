@@ -38,5 +38,6 @@ def save():
 
     reviewdb.update(review, email=email)
     db.update(review,email=email)
-    wiz.response.status(200,True)
+    center=db.get(email=email).center
+    wiz.response.status(200,center)
 
