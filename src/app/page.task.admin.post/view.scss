@@ -61,12 +61,19 @@ a.text-navy {
     background: none;
 }
 
-a.fileName{
+ul.m-0 {
+    display: inline-block;
+}
+
+
+a.fileName {
+    text-align: left;
     vertical-align: middle;
     margin: 0;
     padding: 0;
     background: none;
     color: #2D8BF8;
+    margin-bottom: 5px;
 }
 
 html {
@@ -85,28 +92,6 @@ html {
     float: right;
     border: 1px solid #ccc;
 }
-
-// .content-container {
-//     position: relative;
-//     width: 100%;
-//     height: 50px;
-// }
-
-// .contentNotice {
-//     position: absolute;
-//     top: 750%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     text-align: center;
-//     max-width: 90%;
-//     padding: 20px;
-//     box-sizing: border-box;
-//     background-color: #f0f0f0;
-//     border: 1px solid #ccc;
-//     width: 1200px;
-//     height: 500px;
-
-// }
 
 $highlight: #2D8BF8;
 
@@ -245,4 +230,8 @@ th {
 #editor {
     width: 779px;
     height: 400px;
+}
+
+span.ml-3 {
+    margin-left: 10px;
 }

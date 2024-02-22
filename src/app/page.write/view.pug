@@ -8,8 +8,8 @@
                 a((click)="update()") 저장하기
     p 지원자에게 할당할 과제를 작성하는 페이지 입니다.
 
-.d-flex.justify-content-between(style="min-width:1200px")
-    div(style="min-width:980px;")
+.d-flex.justify-content-between(style="min-width:100%;")
+    div(style="min-width:100%;")
         .card
             .card-body
                 .info-form.row.first-child
@@ -25,6 +25,12 @@
                     .col-md-8
                         form#file
                             input#file-upload.form-control(type='file', name="file", multiple, (change)='upload($event)')
+                            
+                .info-form.row
+                    .col-md-2
+                        h4 작성자
+                    .col-md-10
+                        input.form-control(type="text", placeholder="작성자명을 입력하세요", [(ngModel)]="post.writer", required="")
 
                 .info-form.row(*ngIf="post.files && post.files.length > 0")
                     .col-md-2

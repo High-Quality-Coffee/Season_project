@@ -10,6 +10,7 @@ class Model(base):
     user_id = pw.CharField(index=True, max_length=16)
     category = pw.CharField(index=True, max_length=16)
     title = pw.CharField(index=True, max_length=192)
+    writer=pw.CharField(max_length=32)
     content = pw.TextField()
     files = pw.TextField()
     created = pw.CharField(index=True,max_length=32)

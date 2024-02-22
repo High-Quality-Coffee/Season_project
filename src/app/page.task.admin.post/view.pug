@@ -5,29 +5,29 @@
             li
                 a(routerLink="/task/admin/notice") 뒤로가기
     p 작성한 과제를 확인할 수 있는 페이지 입니다.
-    
-.card-body
-    .info-form.row.first-child.p-3
-        .col-md-8
-            h3.m-0(style="font-size: 20px; line-height: 24px;") 제목 :  {{post.title}}
-        .col-md-3.text-right
-            .btn.btn-sm.btn-outline-orange 작성자
-            span.ml-3 admin
-    
-    .info-form.row.ml-3(*ngIf="post.files && post.files.length > 0")
-        .col-md-1
-            h4 첨부파일
-        .col-md-11
-            ul.m-0
-                li(*ngFor="let file of post.files;let i = index")
-                    a.fileName(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
-    .hr.m-0
-    .editor-area.mt-4.mb-4
-        // textarea#editor([(ngModel)]="post.content")
-        textarea#editor {{post.content}}
-    .info-form.row
-            .col-md-8
-                form#file
-                    input#file-upload.form-control(type='file', name="file", multiple, (change)='upload($event)')
+
+.d-flex.justify-content-between(style="min-width:100%;")
+    div(style="min-width:100%;")
+        .card
+            .card-body
+                .info-form.row.first-child.p-3
+                    .col-md-8
+                        h3.m-0(style="font-size: 20px; line-height: 24px;") 제목 :  {{post.title}}
+                    .col-md-3.text-right
+                        .btn.btn-sm.btn-outline-orange 작성자
+                        span.ml-3 {{post.writer?post.writer:'admin'}}
+                
+                .info-form.row.ml-3(*ngIf="post.files && post.files.length > 0")
+                    .col-md-1
+                        h4.m-0(style="line-height: 24px; padding-left: 1rem;") 첨부파일
+                    .col-md-11
+                        ul.m-0
+                            li.fileList(*ngFor="let file of post.files;let i = index")
+                                a.fileName(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
+                .hr.m-0
+                .editor-area.mt-4.mb-4
+                    // textarea#editor([(ngModel)]="post.content")
+                    textarea#editor {{post.content}}
+                
 
 
