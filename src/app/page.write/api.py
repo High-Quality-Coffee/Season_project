@@ -5,7 +5,7 @@ import datetime
 
 storagepath = wiz.config("config").STORAGE_PATH
 model = wiz.model('orm').use('community')
-db=wiz.model('orm').use('community')
+
 
 def load():
     id = wiz.request.query('id',True)
@@ -14,7 +14,6 @@ def load():
     
 def update():
     data = json.loads(wiz.request.query('data', True))
-    data['user_id'] = wiz.session.get('id')
     data['updated'] = datetime.datetime.now()
     if data['id'] == '':
         del data['id']
@@ -24,8 +23,9 @@ def update():
     else:
         row = model.get(id=data["id"])
         model.update(data, id=data['id'])
-    
+
     files = wiz.request.files()
+    print(files)
     for item in files:
         fs = season.util.os.FileSystem(os.path.join(storagepath, data["category"], str(data["id"])))
         fs.write.file(item.filename, item)

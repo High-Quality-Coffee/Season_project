@@ -57,6 +57,7 @@ export class Component implements OnInit {
         this.fd.append("data", JSON.stringify(post))
         let url = wiz.url('update')
         const { code, data } = await this.service.file.upload(url, this.fd);
+        console.log(data);
         if (code === 200) {
             location.href = "task/admin/notice";
         }
