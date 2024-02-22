@@ -8,11 +8,8 @@ orm = wiz.model('orm')
 def load():
     id = wiz.request.query('id', True)
     row = orm.use('community').get(id=id)
-    row['user'] = orm.use('user').get(id=row['user_id'], fields="id,name")
-    user_id = wiz.session.get('id')
     wiz.response.status(200, {
-        "post": row,
-        "user": user_id,
+        "post": row
     })
 
 def create():

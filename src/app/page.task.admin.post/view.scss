@@ -2,15 +2,22 @@ h1 {
     display: inline-block;
     vertical-align: middle;
     color: white;
-    margin: 0.5rem;
+    margin: 0.2rem;
     padding: 0;
 }
 
 nav {
     display: inline-block;
     vertical-align: middle;
+    margin: 0.4rem;
     float: right;
 }
+
+p {
+    color: white;
+    margin: 0.2rem;
+}
+
 
 ul {
     list-style: none;
@@ -54,6 +61,13 @@ a.text-navy {
     background: none;
 }
 
+a.fileName{
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    background: none;
+    color: #2D8BF8;
+}
 
 html {
     box-sizing: border-box;
@@ -228,7 +242,7 @@ th {
     transition: var(--tblr-accordion-transition);
 }
 
-#editor{
+#editor {
     width: 779px;
     height: 400px;
 }

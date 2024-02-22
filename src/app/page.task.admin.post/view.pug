@@ -1,9 +1,11 @@
 .header
-    h1 Assignment
+    h1 과제
     nav
         ul
             li
                 a(routerLink="/task/admin/notice") 뒤로가기
+    p 작성한 과제를 확인할 수 있는 페이지 입니다.
+    
 .card-body
     .info-form.row.first-child.p-3
         .col-md-8
@@ -18,7 +20,7 @@
         .col-md-11
             ul.m-0
                 li(*ngFor="let file of post.files;let i = index")
-                    a(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
+                    a.fileName(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
     .hr.m-0
     .editor-area.mt-4.mb-4
         // textarea#editor([(ngModel)]="post.content")

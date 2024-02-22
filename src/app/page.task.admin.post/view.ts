@@ -19,22 +19,19 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        await this.service.init();
-        await this.load();
+        // await this.service.init();
+        this.load();
     }
 
     public async load() {
-        this.post.id = WizRoute.segment.id;
+        this.post.id = window.localStorage.getItem('id');
         let { code, data } = await wiz.call('load', { id: this.post.id })
         if (code !== 200) {
             alert("로드실패. 다시 시도해주세요.")
         }
         this.post = data.post;
         this.post.files = JSON.parse(data.post.files.replace(/'/g, '"'));
-        this.user = data.user;
         this.comment.community_id = this.post.id;
-        this.title = this.category_list.find(e => e.id === this.post.category).name
-        await this.load_comment();
 
         const EDITOR_ID = 'textarea#editor';
         this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {})
@@ -44,11 +41,7 @@ export class Component implements OnInit {
         await this.service.render();
     }
 
-    public async load_comment() {
-        let { code, data } = await wiz.call('comment', { post_id: this.post.id })
-        this.comments = data;
-        await this.service.render;
-    }
+
 
     public go(item) {
         const obj = {

@@ -47,8 +47,9 @@ export class Component implements OnInit {
         window.localStorage.setItem("center",data);
     }
 
-    public async saveTitle(value) {
+    public async saveTitle(value,value_id) {
         window.localStorage.setItem('title', value);
+        window.localStorage.setItem('id',value_id);
     }
 
 }
