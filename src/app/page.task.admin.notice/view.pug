@@ -10,10 +10,18 @@
             li
                 a(routerLink="/result/admin") 유저현황
             li
-                a(routerLink="/login") 로그아웃
+                a((click)="logout()") 로그아웃
                 
     p 관리자가 등록한 과제들을 확인할 수 있습니다.
 
+
+#modal-score
+    .modal-content 로그아웃
+        p(style="color:black;") 정말로 로그아웃 하시겠습니까?
+        .modal-btn
+            button.modal-close((click)="logout('close')") 창닫기
+            button.modal-save((click)="logout('logout')") 로그아웃
+    .modal-layer
 
 .card.border-0.table-card.round-0.shadow-none.px-0
             .table-responsive.round-0

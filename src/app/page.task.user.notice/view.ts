@@ -48,4 +48,16 @@ export class Component implements OnInit {
         window.localStorage.setItem('title', value);
     }
 
+    public async logout(val='open') {
+        if (val == "open") {
+            document.getElementById("modal-score").style.display = "block";
+        }
+        else if (val == "close") {
+            document.getElementById("modal-score").style.display = "none";
+        }
+        else if (val === "logout") {
+            location.href="/login";
+        }
+    }
+
 }

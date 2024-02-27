@@ -2,67 +2,67 @@ import { OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from '@wiz/libs/portal/season/service';
 import ClassicEditor from '@wiz/libs/ckeditor/ckeditor';
+import { Menu } from '@wiz/libs/menu';
 
 export class Component implements OnInit {
     public title: any;
+    public category_list = [{ id: "notice", name: "공지사항" }, { id: "request", name: "요청사항" }, { id: "free", name: "자유게시판" }];
+    public post = { id: "", title: "", writer: "", category: "", content: "", files: [] };
     public editor;
-    public post = { id: "", title: "", category: "", content: "", files: [], writer: "" };
     public file;
     public fd = new FormData();
-    public list: any;
-    public name: any;
+
+    public assign = {
+        title: "",
+        content: ""
+    }
 
     constructor(
         public route: ActivatedRoute,
         public service: Service,
+        public menu: Menu,
     ) { }
 
     public async ngOnInit() {
-        this.onLoad();
-        this.load();
+        this.init();
     }
 
-
-    public async onLoad() {
-        let email = window.localStorage.getItem("user_email");
-        let title = window.localStorage.getItem("fdb_title");
-        const { code, data } = await wiz.call("onLoad", { user_email: email, fdb_title: title });
-        this.list = data;
-        this.name = this.list.user_name;
-
-        if (code != 200) return;
-
-        // this.editor.data.set(this.post.content);
-        await this.service.render();
-    }
-
-
-    public async load() {
-        this.post.title = window.localStorage.getItem('fdb_title');
-        let { code, data } = await wiz.call('load', { title: this.post.title })
-        if (code !== 200) {
-            alert("로드실패. 다시 시도해주세요.")
+    public go(item) {
+        const body = {
+            category: item,
         }
-        this.post = data.post;
-        this.comment.community_id = this.post.id;
+        this.service.href([`/community/list`, body]);
+    }
 
+    public async init() {
         const EDITOR_ID = 'textarea#editor';
-        this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {})
-        this.editor.isReadOnly = true;
+        this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
+            toolbar: {
+                items: 'heading | bold italic strikethrough underline | fontColor highlight fontBackgroundColor | bulletedList numberedList todoList | outdent indent | insertTable imageUpload | link blockQuote code codeBlock'.split(' '),
+                shouldNotGroupWhenFull: true
+            },
+            removePlugins: ["MediaEmbedToolbar", "Markdown"],
+            table: ClassicEditor.defaultConfig.table,
+            simpleUpload: {
+                uploadUrl: '/file/upload/' + this.post.category + "/file"
+            }
+        });
         this.editor.data.set(this.post.content);
-        this.editor.ui.view.toolbar.element.style.display = 'none';
         await this.service.render();
     }
 
     public async update() {
+        this.service.loading.show();
         let post = this.post;
-        post.content = this.editor.data.get();
-        this.fd.append("data", JSON.stringify(post))
-        let url = wiz.url('update')
+        this.fd.append("data", JSON.stringify(post));
+        let url = wiz.url('update');
         const { code, data } = await this.service.file.upload(url, this.fd);
         if (code === 200) {
-            location.href = `/community/${this.post.category}/view/${data}`;
+            this.service.loading.hide();
+            location.href = "task/user/post";
         }
+        //무한빌드 원인
+        //this.service.loading.hide();
         else alert("오류가 발생했습니다. 다시 시도해주세요.")
     }
 
@@ -99,6 +99,20 @@ export class Component implements OnInit {
         this.go(this.post.category);
     }
 
+    public async save() {
+        let user = this.assign;
+        let { code, data } = await wiz.call("save", user);
+        if (code == 200) {
+            await this.service.render();
+            location.href = "/task/admin/notice"
+            return;
+        }
 
+    }
 
-} 
+    public async onLoad() {
+
+    }
+
+}
+

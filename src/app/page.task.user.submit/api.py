@@ -4,7 +4,7 @@ import os
 import datetime
 
 storagepath = wiz.config("config").STORAGE_PATH
-model = wiz.model('orm').use('community')
+model = wiz.model('orm').use('user_info')
 
 
 def load():
@@ -18,7 +18,6 @@ def update():
     if data['id'] == '':
         del data['id']
         data['created'] = datetime.datetime.now()
-        data['created']=data['created'].strftime("%Y-%m-%d")
         db = model.orm
         data['id'] = db.create(**data)
     else:

@@ -6,12 +6,26 @@ h1 {
     padding: 0;
 }
 
+a.homebtn {
+    display: inline-flex;
+    width: 10px;
+    height: 36px;
+    padding-right: 28px;
+    color: white;
+}
+
+nav.firstList {
+    display: inline-flex;
+    float: left;
+}
+
 nav {
     display: inline-block;
     vertical-align: middle;
-    margin: 0.4rem;
+    margin: -0.5rem;
     float: right;
 }
+
 
 p {
     margin: 0.2rem;
@@ -25,13 +39,19 @@ ul {
     display: flex;
 }
 
+ul.secondList {
+    display: flex;
+    vertical-align: middle;
+    float: right;
+}
+
 li.icon {
     flex-basis: 25%;
 }
 
 .header {
     background: cadetblue;
-    padding: 20px;
+    padding: 40px;
 }
 
 li {
@@ -86,7 +106,8 @@ html {
 }
 
 
-#modal-score {
+#modal-score,
+#modal-sec {
     display: none;
     position: fixed;
     width: 100%;
@@ -96,35 +117,45 @@ html {
     left: 50%;
 }
 
-#modal-score h2 {
-    margin: 10px;
+#modal-score,
+#modal-sec {
+    h2 {
+        margin: 10px;
+    }
 }
 
-#modal-score .modal-content {
-    width: 300px;
-    margin: 100px 100px;
-    padding: 20px 10px;
-    background: #fff;
-    border: 2px solid #666;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+#modal-score,
+#modal-sec {
+    .modal-content {
+        width: 300px;
+        margin: 100px 100px;
+        padding: 20px 10px;
+        background: #fff;
+        border: 2px solid #666;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
 }
 
-#modal-score .modal-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: -1;
-    /* Ensure it appears on top of other content */
+#modal-score,
+#modal-sec {
+    .modal-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+        /* Ensure it appears on top of other content */
+    }
 }
 
-#content-write {
+#content-write,
+#modal-sec {
     margin-top: 10px;
 }
 
@@ -141,7 +172,7 @@ html {
     float: right;
 }
 
-.feedback{
+.feedback {
     color: cornflowerblue;
     font-weight: 800;
     cursor: pointer;

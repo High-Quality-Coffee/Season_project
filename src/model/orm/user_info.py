@@ -22,6 +22,7 @@ class Model(base):
     role=pw.CharField(max_length=11)
     interview=pw.DateTimeField()
     assignName=pw.CharField(max_length=64)
+    files=pw.TextField()
     score=pw.IntegerField()
     duedate=pw.DateTimeField()
     created=pw.CharField(max_length=11)
