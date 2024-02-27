@@ -14,5 +14,6 @@
         "inputs": [],
         "outputs": []
     },
-    "template": "wiz-layout-navbar()"
+    "template": "wiz-layout-navbar()",
+    "controller": ""
 }

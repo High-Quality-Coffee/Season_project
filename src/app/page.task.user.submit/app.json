@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.task.user.submit",
+    "title": "task/user/submit",
+    "namespace": "task.user.submit",
+    "viewuri": "/task/user/submit",
+    "category": "",
+    "preview": "/task/user/submit",
+    "controller": "base",
+    "layout": "layout.none",
+    "ng.build": {
+        "id": "page.task.user.submit",
+        "name": "PageTaskUserSubmitComponent",
+        "path": "./page.task.user.submit/page.task.user.submit.component"
+    },
+    "ng": {
+        "selector": "wiz-page-task-user-submit",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-task-user-submit()"
+}

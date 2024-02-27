@@ -1,0 +1,22 @@
+{
+    "mode": "page",
+    "id": "page.task.user.post",
+    "title": "task/user/post",
+    "namespace": "task.user.post",
+    "viewuri": "/task/user/post",
+    "category": "",
+    "preview": "/task/user/post",
+    "controller": "base",
+    "layout": "layout.none",
+    "ng.build": {
+        "id": "page.task.user.post",
+        "name": "PageTaskUserPostComponent",
+        "path": "./page.task.user.post/page.task.user.post.component"
+    },
+    "ng": {
+        "selector": "wiz-page-task-user-post",
+        "inputs": [],
+        "outputs": []
+    },
+    "template": "wiz-page-task-user-post()"
+}

@@ -42,6 +42,7 @@ def onLoaD():
 def center():
     email=wiz.request.query("email",True)
 
-    center=userdb.get(email=email).center
+    center=userdb.get(email=email)
+    center = center.center
     wiz.response.status(200,center)
 

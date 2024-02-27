@@ -16,5 +16,13 @@ def onLoad():
     rows=feedback_db.get(**where)
     wiz.response.status(200,rows)
 
-
+def load():
+    title=wiz.request.query("title",True)
+    print(title)
+    row=feedback_db.get(title=title)
+    print(row)
+    wiz.response.status(200,{
+        "post":row
+    })
+    
     

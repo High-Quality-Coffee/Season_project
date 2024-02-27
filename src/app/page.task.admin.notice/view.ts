@@ -44,12 +44,24 @@ export class Component implements OnInit {
             email: user,
         }
         const { code, data } = await wiz.call("center", body);
-        window.localStorage.setItem("center",data);
+        window.localStorage.setItem("center", data);
     }
 
-    public async saveTitle(value,value_id) {
+    public async saveTitle(value, value_id) {
         window.localStorage.setItem('title', value);
-        window.localStorage.setItem('id',value_id);
+        window.localStorage.setItem('id', value_id);
+    }
+
+    public async logout(val='open') {
+        if (val == "open") {
+            document.getElementById("modal-score").style.display = "block";
+        }
+        else if (val == "close") {
+            document.getElementById("modal-score").style.display = "none";
+        }
+        else if (val === "logout") {
+            location.href="/login";
+        }
     }
 
 }

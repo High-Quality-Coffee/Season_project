@@ -1,9 +1,11 @@
 .header
-    h1 MyProfile
+    h1 내 프로필
     nav
         ul
             li
                 a(routerLink="/task/user/notice") 뒤로가기
+                
+    p 내 정보를 확인할 수 있습니다.
 
 .card.border-0.table-card.round-0.shadow-none.px-0
             .table-responsive.round-0
@@ -11,27 +13,22 @@
                     thead
                         tr
                             th.text-center 이름
-                            th.text-center 파일
-                            th.text-center 제출여부
                             th.text-center 과제마감기한
-
+                            th.text-center 면접날짜
                     tbody
                         tr(*ngFor="let item of list")
                             td.text-center {{item.name}}
-                            td.text-center 없음
-                            td.text-center 제출 안함
                             td.text-center {{item.duedate}}
+                            th.text-center {{item.interview}}
                     
                     thead
                         tr
-                            th.text-center 면접날짜
                             th.text-center 이메일
                             th.text-center 연락처
                             th.text-center 지원부서
                                 
                     tbody
                         tr(*ngFor="let item of list")
-                            th.text-center {{item.interview}}
                             th.text-center {{item.email}}
                             th.text-center {{item.phone}}
                             th.text-center {{item.center}}

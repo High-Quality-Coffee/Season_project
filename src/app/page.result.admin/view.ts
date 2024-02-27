@@ -109,5 +109,17 @@ export class Component implements OnInit {
 
     }
 
+    public async logout(val = 'open') {
+        if (val == "open") {
+            document.getElementById("modal-sec").style.display = "block";
+        }
+        else if (val == "close") {
+            document.getElementById("modal-sec").style.display = "none";
+        }
+        else if (val === "logout") {
+            location.href = "/login";
+        }
+    }
+
 
 }

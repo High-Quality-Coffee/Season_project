@@ -6,14 +6,6 @@ h1 {
     padding: 0;
 }
 
-a.homebtn {
-    display: inline-flex;
-    width: 10px;
-    height: 36px;
-    padding-right: 28px;
-    color: white;
-}
-
 nav {
     display: inline-block;
     vertical-align: middle;
@@ -25,7 +17,6 @@ p {
     color: white;
     margin: 0.2rem;
 }
-
 
 ul {
     list-style: none;
@@ -69,20 +60,6 @@ a.text-navy {
     background: none;
 }
 
-ul.m-0 {
-    display: inline-block;
-}
-
-
-a.fileName {
-    text-align: left;
-    vertical-align: middle;
-    margin: 0;
-    padding: 0;
-    background: none;
-    color: #2D8BF8;
-    margin-bottom: 5px;
-}
 
 html {
     box-sizing: border-box;
@@ -139,6 +116,15 @@ $highlight: #2D8BF8;
     }
 }
 
+.col-md-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h4 {
+    margin-top: 10px;
+}
 
 .accordion-body {
     .d-flex {
@@ -189,13 +175,6 @@ th {
     top: 38px;
 }
 
-.col-md-2 {
-    text-align: center;
-    transform: translate(-50%, -50%);
-    position: absolute;
-}
-
-
 .relation {
     // border-top: 0.4px solid black;
     height: 100%;
@@ -235,11 +214,6 @@ th {
     transition: var(--tblr-accordion-transition);
 }
 
-#editor {
-    width: 779px;
-    height: 400px;
-}
-
-span.ml-3 {
-    margin-left: 10px;
-}
+// .card-body {
+//     background-color: white;
+// }

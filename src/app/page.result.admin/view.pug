@@ -1,7 +1,8 @@
 .header
+    a.homebtn(routerLink="/task/admin/notice") 홈
     h1 지원자 리스트
     nav
-        ul
+        ul.firstList
             li
                 a([ngClass]="{'yellowgreen':center_category=='전체보기'}",(click)="onLoad()") 전체보기
             li
@@ -10,12 +11,14 @@
                 a([ngClass]="{'yellowgreen':center_category=='R&D센터'}",(click)="category('rnd')") R&D센터
             li
                 a([ngClass]="{'yellowgreen':center_category=='SW개발센터'}",(click)="category('sw')") SW개발센터
+    
+        ul.secondList
             li
                 a(routerLink="/task/admin/assign") 계정/과제 할당
             li
                 a(routerLink="/task/admin/notice") 등록된 과제
             li
-                a(routerLink="/login") 로그아웃
+                a((click)="logout()") 로그아웃
     
     p 지원자의 과제 제출 현황과 점수설정, 피드백 확인이 가능합니다
 
@@ -25,6 +28,14 @@
         .modal-btn
             button.modal-close((click)="input_score('close')") 창닫기
             button.modal-save((click)="input_score('save')") 저장하기
+    .modal-layer
+
+#modal-sec
+    .modal-content 로그아웃
+        p.modal-text(style="color:black;") 정말로 로그아웃 하시겠습니까?
+        .modal-btn
+            button.modal-close((click)="logout('close')") 창닫기
+            button.modal-save((click)="logout('logout')") 로그아웃
     .modal-layer
 
 .card.border-0.table-card.round-0.shadow-none.px-0
