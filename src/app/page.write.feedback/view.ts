@@ -2,39 +2,40 @@ import { OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from '@wiz/libs/portal/season/service';
 import ClassicEditor from '@wiz/libs/ckeditor/ckeditor';
-import { Menu } from '@wiz/libs/menu';
 
 export class Component implements OnInit {
     public title: any;
-    public category_list = [{ id: "notice", name: "공지사항" }, { id: "request", name: "요청사항" }, { id: "free", name: "자유게시판" }];
-    public post = { id: "", title: "", writer:"",category: "", content: "", files: [] };
     public editor;
+    public post = { id: "", title: "", category: "", content: "", files: [] };
     public file;
     public fd = new FormData();
+    public list: any;
 
-    public assign = {
-        title: "",
-        content: ""
-    }
+    public data_fdb = { title: "", content: "", writer: "", files: [], user_name: "", user_email: "" }
 
     constructor(
         public route: ActivatedRoute,
         public service: Service,
-        public menu: Menu,
     ) { }
 
     public async ngOnInit() {
+        this.onLoad();
         this.init();
     }
 
-    public go(item) {
-        const body = {
-            category: item,
-        }
-        this.service.href([`/community/list`, body]);
-    }
-
     public async init() {
+        // this.post.id = WizRoute.segment.id;
+        // this.post.category = WizRoute.segment.category;
+        // this.title = this.category_list.find(e => e.id === this.post.category).name
+        // if (this.post.id !== "new") {
+        //     const { code, data } = await wiz.call("load", { id: this.post.id });
+        //     this.post = data;
+        //     this.post.files = JSON.parse(data.files.replace(/'/g, '"'));
+        //     await this.service.render();
+        // }
+        // else this.post.id = ""
+
+        //에디터 붙이기
         const EDITOR_ID = 'textarea#editor';
         this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {
             toolbar: {
@@ -57,9 +58,8 @@ export class Component implements OnInit {
         this.fd.append("data", JSON.stringify(post))
         let url = wiz.url('update')
         const { code, data } = await this.service.file.upload(url, this.fd);
-        console.log(data);
         if (code === 200) {
-            location.href = "task/admin/notice";
+            location.href = `/community/${this.post.category}/view/${data}`;
         }
         else alert("오류가 발생했습니다. 다시 시도해주세요.")
     }
@@ -97,20 +97,22 @@ export class Component implements OnInit {
         this.go(this.post.category);
     }
 
-    public async save() {
-        let user = this.assign;
-        let { code, data } = await wiz.call("save", user);
-        if (code == 200) {
-            await this.service.render();
-            location.href = "/task/admin/notice"
-            return;
-        }
-
-    }
 
     public async onLoad() {
+        let email = window.localStorage.getItem("user_email");
+        const { code, data } = await wiz.call("onLoad", { user_email: email });
+        this.data_fdb.user_name = data;
+        this.data_fdb.user_email = email;
+    }
+
+
+    public async feedback_save() {
+        const { code, data } = await wiz.call("feedback_save", this.data_fdb);
+        console.log(this.post.content);
+        if (code != 200) return;
+        location.href = "/task/admin/feedback";
 
     }
 
-}
 
+} 

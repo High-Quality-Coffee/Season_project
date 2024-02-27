@@ -20,29 +20,13 @@ class Model(base):
     password=base.PasswordField()
     center=base.TextField()
     role=pw.CharField(max_length=11)
-    interview=pw.CharField(max_length=32)
-    duedate=pw.CharField(max_length=32)
+    interview=pw.DateTimeField()
+    assignName=pw.CharField(max_length=64)
+    score=pw.IntegerField()
+    duedate=pw.DateTimeField()
     created=pw.CharField(max_length=11)
     #IntegerField() 는 max_length 지정해줄 필요 없음 - 지정하면 오류발생
     modified=pw.IntegerField()
 
 
 
-
-
-
-
-
-# CREATE TABLE `user_info` (
-#   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-#   `name` text DEFAULT NULL,
-#   `email` text DEFAULT NULL,
-#   `phone` varchar(64) DEFAULT NULL,
-#   `password` text DEFAULT NULL,
-#   `center` text DEFAULT NULL,
-#   `role` text DEFAULT NULL,
-#   `interview` varchar(32) DEFAULT NULL,
-#   `created` varchar(11) DEFAULT NULL,
-#   `modified` int(11) DEFAULT NULL,
-#   PRIMARY KEY (`id`)
-# ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

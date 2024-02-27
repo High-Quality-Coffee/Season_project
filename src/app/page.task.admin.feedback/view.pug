@@ -1,0 +1,42 @@
+.header
+    h1 FEEDBACK LIST
+    
+    nav
+        ul
+            li
+                a(routerLink="/write/feedback") 작성하기
+            li
+                a(routerLink="/result/admin") 뒤로가기
+            li
+                a(routerLink="/login") 로그아웃
+
+    p 유저별 피드백을 확인할 수 있는 페이지 입니다.
+
+
+.card.border-0.table-card.round-0.shadow-none.px-0
+            .table-responsive.round-0
+                table.table.table-center.table-nowrap.card-table
+                    thead
+                        tr
+                            th.text-center 번호
+                            th.text-center 제목
+                            th.text-center 작성자
+                            th.text-center 등록일
+                            th.text-center 피드백 대상
+                    tbody
+                        tr(*ngIf="!list")
+                            td.text-center(colspan=6) 피드백이 없습니다.
+                        ng-container(*ngIf="list")
+                            tr(*ngFor="let item of list")
+                                td.text-center {{item.id}}
+                                td.text-center.title(routerLink="/task/admin/post/feedback" , (click)="send_title(item.title)") {{item.title}}
+                                td.text-center {{item.writer}}
+                                td.text-center {{item.created}}
+                                td.text-center {{item.user_name}}
+
+                        
+                    
+        
+
+                                
+                               

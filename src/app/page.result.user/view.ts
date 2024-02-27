@@ -19,19 +19,7 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        // await this.service.init();
-        // this.route.params.subscribe(async ({ category }) => {
-        //     this.post.category = category;
-        //     await this.init();
-        // })
         this.onLoad();
-    }
-
-    public go(item) {
-        const body = {
-            category: item,
-        }
-        this.service.href([`/community/list`, body]);
     }
 
     public async init() {

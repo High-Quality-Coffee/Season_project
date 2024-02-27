@@ -1,12 +1,19 @@
+.header
+    h1 MyProfile
+    nav
+        ul
+            li
+                a(routerLink="/task/user/notice") 뒤로가기
+
 .card.border-0.table-card.round-0.shadow-none.px-0
             .table-responsive.round-0
                 table.table.table-center.table-nowrap.card-table
                     thead
                         tr
-                            th.text-uppercase 이름
-                            th.text-uppercase 파일
-                            th.text-uppercase.text-center 제출여부
-                            th.text-uppercase.text-center 마감기한
+                            th.text-center 이름
+                            th.text-center 파일
+                            th.text-center 제출여부
+                            th.text-center 과제마감기한
 
                     tbody
                         tr(*ngFor="let item of list")
@@ -14,31 +21,21 @@
                             td.text-center 없음
                             td.text-center 제출 안함
                             td.text-center {{item.duedate}}
-
+                    
+                    thead
                         tr
-                            th.text-uppercase 면접날짜
-                            th.text-uppercase 이메일
-                            th.text-uppercase 연락처
-                            th.text-uppercase 지원부서
-                            
+                            th.text-center 면접날짜
+                            th.text-center 이메일
+                            th.text-center 연락처
+                            th.text-center 지원부서
+                                
                     tbody
                         tr(*ngFor="let item of list")
-                            th.text-uppercase {{item.interview}}
-                            th.text-uppercase {{item.email}}
-                            th.text-uppercase {{item.phone}}
-                            th.text-uppercase {{item.center}}
+                            th.text-center {{item.interview}}
+                            th.text-center {{item.email}}
+                            th.text-center {{item.phone}}
+                            th.text-center {{item.center}}
 
 
 
-            .info-form.row
-                        .col-md-8
-                            form#file
-                                input#file-upload.form-control(type='file', name="file", multiple, (change)='upload($event)')
-
-            .info-form.row(*ngIf="post.files && post.files.length > 0")
-                .col-md-2
-                .col-md-10
-                    ul.m-0
-                        li(*ngFor="let file of post.files;let i = index")
-                            span {{file}}
-                            button.btn.btn-sm.btn-square.btn-danger.ml-1(style="padding: 0 4px;", (click)="delete_file(file)") X
+            

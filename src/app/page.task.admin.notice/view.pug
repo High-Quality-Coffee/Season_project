@@ -1,36 +1,26 @@
 .header
-    h1 MyProfile
+    h1 과제목록
     nav
         ul
             li
-                a(routerLink="/task/admin/assign") 과제 할당
+                a(routerLink="/write") 과제 작성
+
             li
-                a(routerLink="/result/admin") 과제 확인
+                a(routerLink="/task/admin/assign") 계정/과제 할당
+            li
+                a(routerLink="/result/admin") 유저현황
+            li
+                a(routerLink="/login") 로그아웃
+                
+    p 관리자가 등록한 과제들을 확인할 수 있습니다.
 
 
-// .content-container
-//     .contentNotice
-//         h2.title Notice
-    
-
-.w-100
-    wiz-component-first
-
-    .d-flex.justify-content-between(style="min-width:1200px")
-        div(style="min-width:980px;")
-            .card
-                .card-header.area-round.bg-blue
-                    h4.card-title.text-white {{ title }}
-                    .col-auto.ml-auto.d-print-none
-                    //ng-container(*ngIf="category==='notice'?service.auth.show('admin'):service.auth.show(true)")
-                    ng-container
-                        a.ml-2.btn.btn-sm.px-2.btn-white.text-blue(routerLink="/write") 작성하기
-                    
-                .card-body
+.card.border-0.table-card.round-0.shadow-none.px-0
+            .table-responsive.round-0
                     table.table.table-hover.board-table.box-shadow.br-10
                         thead
                             tr
-                                th.text-center.col-3.btlr 번호
+                                th.text-center 번호
                                 th.text-center 제목
                                 th.text-center.col-3 작성자
                                 th.text-center.col-3.btrr 등록일
@@ -42,22 +32,12 @@
                             tr(*ngIf="!lisT")
                                 td.p-6.text-center(colspan=5) 게시글이 없습니다.
 
-
-                            // ng-container(*ngIf="list")
-                                // tr(*ngFor="let item of list;let i = index")
-                                //     td.text-center.col-3 {{ item.id }}
-                                //     td
-                                //         a.title.text-navy(routerLink="/community/{{category}}/view/{{item.id}}") {{item.title.length == 0 ? "제목없음" : item.title}}
-                                //     td.text-center.col-3 {{ item.user.name}}
-                                //     td.text-center.col-3 {{ item.created.substring(0,10) }}
-
                             ng-container(*ngIf="lisT")
                                 tr(*ngFor="let item of lisT;let i = index")
-                                    td.text-center.col-3 {{ item.id }}
+                                    td.text-center {{ item.id }}
                                     td
-                                        a.text-navy(routerLink="/task/admin/post", (click)="saveTitle(item.title)") {{item.title.length == 0 ? "제목없음" : item.title}}
+                                        a.text-navy(routerLink="/task/admin/post", (click)="saveTitle(item.title,item.id)") {{item.title.length == 0 ? "제목없음" : item.title}}
                                     td.text-center.col-3 admin
-                                    td.text-center.col-3 null
-                    
+                                    td.text-center.col-3 {{item.created}}
 
-    
+                    

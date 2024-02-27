@@ -2,14 +2,20 @@ h1 {
     display: inline-block;
     vertical-align: middle;
     color: white;
-    margin: 0.5rem;
+    margin: 0.2rem;
     padding: 0;
 }
 
 nav {
     display: inline-block;
     vertical-align: middle;
+    margin: 0.4rem;
     float: right;
+}
+
+p{
+    color: white;
+    margin: 0.2rem;
 }
 
 ul {
@@ -189,7 +195,6 @@ th {
 }
 
 
-
 .relation {
     // border-top: 0.4px solid black;
     height: 100%;
@@ -229,6 +234,7 @@ th {
     transition: var(--tblr-accordion-transition);
 }
 
-#file {
-    width: 151%;
+#editor {
+    width: 779px;
+    height: 400px;
 }

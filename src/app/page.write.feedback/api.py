@@ -1,10 +1,20 @@
+import re
 import season
 import json
 import os
 import datetime
 
-storagepath = wiz.config("config").STORAGE_PATH
-model = wiz.model('orm').use('community')
+db=wiz.model("orm").use("community")
+user_db=wiz.model("orm").use("user_info")
+feedback_db=wiz.model("orm").use("feedback")
+
+def onLoad():
+    email=wiz.request.query("user_email",True)
+
+    name=user_db.get(email=email).name
+
+    print(name)
+    wiz.response.status(200,name)
 
 
 def load():
@@ -14,6 +24,7 @@ def load():
     
 def update():
     data = json.loads(wiz.request.query('data', True))
+    data['user_id'] = wiz.session.get('id')
     data['updated'] = datetime.datetime.now()
     if data['id'] == '':
         del data['id']
@@ -23,9 +34,8 @@ def update():
     else:
         row = model.get(id=data["id"])
         model.update(data, id=data['id'])
-
+    
     files = wiz.request.files()
-    print(files)
     for item in files:
         fs = season.util.os.FileSystem(os.path.join(storagepath, data["category"], str(data["id"])))
         fs.write.file(item.filename, item)
@@ -57,3 +67,18 @@ def save():
 
     db.insert(user)
     wiz.response.status(200,True)
+
+
+def feedback_save():
+    feedback=dict()
+    feedback["title"]=wiz.request.query("title",True)
+    feedback["content"]=wiz.request.query("content",True)
+    feedback["writer"]=wiz.request.query("writer",True)
+    
+    feedback["created"]=datetime.datetime.now()
+    feedback["user_name"]=wiz.request.query("user_name",True)
+    feedback["user_email"]=wiz.request.query("user_email",True)
+
+    feedback_db.insert(feedback)
+    wiz.response.status(200,True)
+    

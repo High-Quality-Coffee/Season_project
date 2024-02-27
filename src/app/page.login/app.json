@@ -7,7 +7,7 @@
     "category": "",
     "preview": "/login",
     "controller": "base",
-    "layout": "layout.navbar",
+    "layout": "layout.none",
     "ng.build": {
         "id": "page.login",
         "name": "PageLoginComponent",

@@ -2,14 +2,20 @@ h1 {
     display: inline-block;
     vertical-align: middle;
     color: white;
-    margin: 0.5rem;
+    margin: 0.2rem;
     padding: 0;
 }
 
 nav {
     display: inline-block;
     vertical-align: middle;
+    margin: 0.4rem;
     float: right;
+}
+
+p{
+    color: white;
+    margin: 0.2rem;
 }
 
 ul {
@@ -52,6 +58,8 @@ a.text-navy {
     margin: 0;
     padding: 0;
     background: none;
+    color: royalblue;
+    font-weight: 800;
 }
 
 html {

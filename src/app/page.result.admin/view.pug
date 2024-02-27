@@ -1,22 +1,57 @@
+.header
+    h1 지원자 리스트
+    nav
+        ul
+            li
+                a([ngClass]="{'yellowgreen':center_category=='전체보기'}",(click)="onLoad()") 전체보기
+            li
+                a([ngClass]="{'yellowgreen':center_category=='기술사업부'}",(click)="category('season')") 기술사업부
+            li
+                a([ngClass]="{'yellowgreen':center_category=='R&D센터'}",(click)="category('rnd')") R&D센터
+            li
+                a([ngClass]="{'yellowgreen':center_category=='SW개발센터'}",(click)="category('sw')") SW개발센터
+            li
+                a(routerLink="/task/admin/assign") 계정/과제 할당
+            li
+                a(routerLink="/task/admin/notice") 등록된 과제
+            li
+                a(routerLink="/login") 로그아웃
+    
+    p 지원자의 과제 제출 현황과 점수설정, 피드백 확인이 가능합니다
+
+#modal-score
+    .modal-content 점수입력
+        input#content-write(type="text", placeholder="점수를 입력하세요", [(ngModel)]="score")
+        .modal-btn
+            button.modal-close((click)="input_score('close')") 창닫기
+            button.modal-save((click)="input_score('save')") 저장하기
+    .modal-layer
+
 .card.border-0.table-card.round-0.shadow-none.px-0
             .table-responsive.round-0
                 table.table.table-center.table-nowrap.card-table
                     thead
                         tr
-                            th.text-uppercase 이름
-                            th.text-uppercase 제출
-                            th.text-uppercase.text-center 파일
-                            th.text-uppercase.text-center 점수
-                            th.text-uppercase.text-center 피드백
+                            th.text-center 이름
+                            th.text-center 이메일
+                            th.text-center 지원부서
+                            th.text-center 제출
+                            th.text-center 점수
+                            th.text-center 피드백
                     tbody
                         tr(*ngIf="!list")
                             td.text-center(colspan=6) 지원자가 없습니다.
                         ng-container(*ngIf="list")
                             tr(*ngFor="let item of list")
-                                td.text-center.col-3 {{ item.name }}
-                                td.text-center.col-3
-                                td.text-center.col-3
-                                td.text-center.col-3
-                                td.text-center.col-3 
+                                td.text-center {{ item.name }}
+                                td.text-center {{item.email}}
+                                td.text-center {{ item.center }}
+                                td.text-center
+                                td.text-center((click)="input_score(item.email)") {{item.score}}  
+                                td.text-center.feedback((click)="input_feedback(item.email)") 피드백 보기
+                        
+                    
+        
+
                                 
                                

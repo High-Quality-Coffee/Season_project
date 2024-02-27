@@ -1,42 +1,48 @@
 .header
-    h1 MyProfile
+    h1 과제/계정 할당
     nav
         ul
             li
-                a(routerLink="/result/admin") 과제 확인
+                a(routerLink="/result/admin") 유저현황
             li
-                a((click)="assign()") 할당 완료
-
+                a((click)="assign()") 할당완료
+    p 지원자의 계정을 생성함과 동시에 과제를 할당할 수 있습니다.
 .assign-setting
     .name-choice
         .name
             h2 이름
-        input.no(type="text", placeholder="이름을 입력하세요", [(ngModel)]="data.name")
+        input.form-control#no(type="text", placeholder="이름을 입력하세요", [(ngModel)]="data.name")
 
     .assign-number
         .number
             h2 과제선택
-        button.no([(ngModel)]="data.id") 1 
-        button.no([(ngModel)]="data.id") 2
+
+        tr(*ngIf="!list")
+            td.p-6.text-center(colspan=5) 게시글이 없습니다.
+
+        ng-container(*ngIf="list")
+            tr.frame(*ngFor="let item of list;let i = index", style="display:inline")
+                button.custom-btn.btn-1((click)="saveAssign(item.title)") {{ item.title }}
     
     .due-date
         .date
-            h2 면접날짜 (e.g.2018-07-03 21:40)
-        input.no(type="text", placeholder="면접날짜를 입력하세요", [(ngModel)]="data.interview")
+            h2 면접날짜
+        input.form-control#no(type="datetime-local", placeholder="면접날짜를 입력하세요", [(ngModel)]="data.interview")
 
     .user_email
         .email
             h2 이메일
-        input.no(type="text", placeholder="이메일을 입력하세요", [(ngModel)]="data.email")
+        input.form-control#no(type="text", placeholder="이메일을 입력하세요", [(ngModel)]="data.email")
     
     .user_phone
         .phone
             h2 연락처
-        input.no(type="text", placeholder="연락처를 입력하세요", [(ngModel)]="data.phone")
+        input.form-control#no(type="text", placeholder="연락처를 입력하세요", [(ngModel)]="data.phone")
     
     .user_role
-        .phone
-            h2 지원 부서
-        input.no(type="text", placeholder="지원부서를 입력하세요", [(ngModel)]="data.center")
-
+        .role
+            h2 지원 부서 (기술사업부, R&D센터, SW개발센터)
+            button.custom-btn.btn-1((click)="department('season')") 기술사업부
+            button.custom-btn.btn-1((click)="department('rnd')") R&D센터
+            button.custom-btn.btn-1((click)="department('sw')") SW개발센터
         

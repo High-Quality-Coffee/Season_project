@@ -15,6 +15,7 @@ export class Component implements OnInit {
     };
 
     public async alert(message: string, status: string = 'error') {
+        console.log(this.service.auth.session)
         return await this.service.alert.show({
             title: "",
             message: message,

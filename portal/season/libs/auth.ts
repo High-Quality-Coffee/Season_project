@@ -22,7 +22,8 @@ export default class Auth {
         let { code, data } = await this.request.post('/auth/check');
         let { status, session } = data;
 
-        this.verified = session.verified;
+        this.verified = session.verified?session.verified:[];
+        // this.verified = session.verified;
 
         if (code != 200)
             return this;

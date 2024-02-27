@@ -1,4 +1,4 @@
-const INDEX_PAGE = "main";
+const INDEX_PAGE = "login";
 
 import { URLPattern } from "urlpattern-polyfill";
 import { NgModule } from '@angular/core';

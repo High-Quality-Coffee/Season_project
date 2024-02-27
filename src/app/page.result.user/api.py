@@ -7,7 +7,7 @@ def search():
 
     where=dict(
         email=email,
-        fields="name,phone,center,interview,email"
+        fields="name,phone,center,interview,duedate,email"
     )
 
     rows=db.rows(**where)
