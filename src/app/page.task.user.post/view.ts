@@ -21,6 +21,7 @@ export class Component implements OnInit {
     public async ngOnInit() {
         // await this.service.init();
         this.load();
+        await this.service.render();
     }
 
     public async load() {
@@ -68,4 +69,9 @@ export class Component implements OnInit {
         let { code, data } = await wiz.call('update', item)
         location.reload();
     };
+
+    public async movetoBack() {
+        await this.service.render();
+        location.href = "task/user/notice";
+    }
 } 

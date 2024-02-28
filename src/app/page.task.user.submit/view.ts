@@ -7,7 +7,7 @@ import { Menu } from '@wiz/libs/menu';
 export class Component implements OnInit {
     public title: any;
     public category_list = [{ id: "notice", name: "공지사항" }, { id: "request", name: "요청사항" }, { id: "free", name: "자유게시판" }];
-    public post = { id: "", title: "", writer: "", category: "", content: "", files: [] };
+    public post = { id: "", title: "", writer: "", category: "", content: "", files: [],email:"" };
     public editor;
     public file;
     public fd = new FormData();

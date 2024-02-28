@@ -26,15 +26,15 @@ export class Component implements OnInit {
         }
         const { code, data } = await wiz.call("onLoad", email);
         this.pubdata = data[0].assignName;
-        this.duedates=data[0].duedate;
+        this.duedates = data[0].duedate;
         //let list = JSON.parse(data[0].assignName);
         this.body = {
             list: this.pubdata
         }
         if (code != 200)
             return;
-        await this.service.render();
         this.onLoading();
+        await this.service.render();
     }
 
     public async onLoading() {
@@ -46,9 +46,11 @@ export class Component implements OnInit {
 
     public async saveTitle(value) {
         window.localStorage.setItem('title', value);
+        await this.service.render();
+        location.href="/task/user/post";
     }
 
-    public async logout(val='open') {
+    public async logout(val = 'open') {
         if (val == "open") {
             document.getElementById("modal-score").style.display = "block";
         }
@@ -56,7 +58,7 @@ export class Component implements OnInit {
             document.getElementById("modal-score").style.display = "none";
         }
         else if (val === "logout") {
-            location.href="/login";
+            location.href = "/login";
         }
     }
 
