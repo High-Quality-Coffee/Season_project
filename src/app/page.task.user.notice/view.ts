@@ -16,8 +16,8 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        this.onLoad();
         await this.service.init();
+        this.onLoad();
     }
 
     public async onLoad() {
@@ -33,21 +33,21 @@ export class Component implements OnInit {
         }
         if (code != 200)
             return;
-        this.onLoading();
         await this.service.render();
+        this.onLoading();
     }
 
     public async onLoading() {
         const { code, data } = await wiz.call("onLoading", this.body);
         this.items = data;
-        if (coding != 200) return;
         await this.service.render();
+        if (coding != 200) return;
     }
 
     public async saveTitle(value) {
         window.localStorage.setItem('title', value);
         await this.service.render();
-        location.href="/task/user/post";
+        location.href = "/task/user/post";
     }
 
     public async logout(val = 'open') {
@@ -62,4 +62,8 @@ export class Component implements OnInit {
         }
     }
 
+    public async movetoNext() {
+        await this.service.render();
+        location.href = "/result/user";
+    }
 }

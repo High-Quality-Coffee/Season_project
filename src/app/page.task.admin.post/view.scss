@@ -236,8 +236,9 @@ th {
 }
 
 #editor {
-    width: 779px;
-    height: 400px;
+    min-height: 200px;
+    min-width: 200px;
+    border: none;
 }
 
 span.ml-3 {

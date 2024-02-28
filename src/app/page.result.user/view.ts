@@ -105,5 +105,12 @@ export class Component implements OnInit {
         await this.service.render();
         if (code != 200) return;
     }
+
+    public async movetoBack() {
+        location.href = "/task/user/notice";
+        await this.service.render();
+    }
 }
+
+
 

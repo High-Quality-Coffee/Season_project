@@ -19,8 +19,8 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        // await this.service.init();
         this.load();
+        await this.service.init();
         await this.service.render();
     }
 
