@@ -6,7 +6,7 @@ import ClassicEditor from '@wiz/libs/ckeditor/ckeditor';
 export class Component implements OnInit {
     public title: any;
     public editor;
-    public post = { id: "", title: "", category: "", content: "", files: [] };
+    public post = { id: "", title: "", category: "", content: "", files: [], user_email: "", user_name: "",writer:"" };
     public file;
     public fd = new FormData();
     public list: any;
@@ -42,13 +42,15 @@ export class Component implements OnInit {
     }
 
     public async update() {
+        this.post.user_email = window.localStorage.getItem('user_email');
+        this.post.writer=window.localStorage.getItem('email');
         let post = this.post;
         post.content = this.editor.data.get();
         this.fd.append("data", JSON.stringify(post))
         let url = wiz.url('update')
         const { code, data } = await this.service.file.upload(url, this.fd);
         if (code === 200) {
-            location.href = `/community/${this.post.category}/view/${data}`;
+            location.href = '/task/admin/feedback';
         }
         else alert("오류가 발생했습니다. 다시 시도해주세요.")
     }

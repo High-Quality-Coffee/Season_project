@@ -42,7 +42,11 @@ export class Component implements OnInit {
         await this.service.render();
     }
 
-
+    public async download(i) {
+        console.log(i, this.post.files[i])
+        let download = wiz.url('download?id=' + this.post.id + "&title=" + this.post.files[i])
+        window.open(download, '_blank');
+    }
 
     public go(item) {
         const obj = {

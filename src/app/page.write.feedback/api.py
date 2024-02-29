@@ -6,6 +6,7 @@ import datetime
 
 db=wiz.model("orm").use("community")
 user_db=wiz.model("orm").use("user_info")
+model = wiz.model('orm').use('user_info')
 feedback_db=wiz.model("orm").use("feedback")
 
 def onLoad():
@@ -24,13 +25,14 @@ def load():
     
 def update():
     data = json.loads(wiz.request.query('data', True))
+    data['user_name']=user_db.get(email=data['user_email']).name
     data['user_id'] = wiz.session.get('id')
     data['updated'] = datetime.datetime.now()
     if data['id'] == '':
         del data['id']
         data['created'] = datetime.datetime.now()
-        db = model.orm
-        data['id'] = db.create(**data)
+        db_a=feedback_db.orm
+        db_a.create(**data)
     else:
         row = model.get(id=data["id"])
         model.update(data, id=data['id'])
@@ -40,7 +42,8 @@ def update():
         fs = season.util.os.FileSystem(os.path.join(storagepath, data["category"], str(data["id"])))
         fs.write.file(item.filename, item)
 
-    wiz.response.status(200, data['id'])
+    
+    wiz.response.status(200, True)
     
 def delete():
     data_id = wiz.request.query('id', True)

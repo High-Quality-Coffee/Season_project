@@ -18,8 +18,9 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        this.onLoad();
         this.load();
+        this.onLoad();
+        await this.service.render();
     }
 
 
@@ -40,11 +41,10 @@ export class Component implements OnInit {
     public async load() {
         this.post.title = window.localStorage.getItem('fdb_title');
         let { code, data } = await wiz.call('load', { title: this.post.title })
-        if (code !== 200) {
+        if (code != 200) {
             alert("로드실패. 다시 시도해주세요.")
         }
         this.post = data.post;
-        this.comment.community_id = this.post.id;
 
         const EDITOR_ID = 'textarea#editor';
         this.editor = await ClassicEditor.create(document.querySelector(EDITOR_ID), {})

@@ -24,7 +24,7 @@
                     .col-md-11
                         ul.m-0
                             li.fileList(*ngFor="let file of post.files;let i = index")
-                                a.fileName(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
+                                a.fileName((click)="download(i)") {{file}}
                 .hr.m-0
                 .editor-area.mt-4.mb-4
                     // textarea#editor([(ngModel)]="post.content")

@@ -19,8 +19,8 @@ def update():
     if data['id'] == '':
         del data['id']
         data['created'] = datetime.datetime.now()
-        db = model.orm
-        data['id'] = db.create(**data)
+        # db = model.orm
+        # data['id'] = db.create(**data)
     else:
         row = model.get(id=data["id"])
         model.update(data, id=data['id'])
@@ -33,7 +33,7 @@ def update():
         fs = season.util.os.FileSystem(os.path.join(storagepath, data["category"], str(data["id"])))
         fs.write.file(item.filename, item)
 
-    wiz.response.status(200, data['id'])
+    wiz.response.status(200, True)
     
 def delete():
     data_id = wiz.request.query('id', True)
