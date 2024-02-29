@@ -1,6 +1,9 @@
 import re
 import datetime
+import os
 orm = wiz.model('orm')
+storagepath = wiz.config("config").STORAGE_PATH
+fs = season.util.os.FileSystem(os.path.join(storagepath))
 
 import datetime
 orm = wiz.model('orm')
@@ -75,6 +78,10 @@ def onLoad():
 
     print(rows)
     wiz.response.status(200,rows)
-
-
     
+def download():
+    id = wiz.request.query("id", True)
+    title = wiz.request.query("title", True)
+    data = orm.use('community').get(id=id)
+    filepath = fs.abspath(f"{id}/{title}")
+    wiz.response.download(filepath, as_attachment=True)

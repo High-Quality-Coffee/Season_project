@@ -61,7 +61,7 @@ export class Component implements OnInit {
         const { code, data } = await this.service.file.upload(url, this.fd);
         if (code === 200) {
             this.service.loading.hide();
-            location.href = "task/user/post";
+            location.href = "/task/user/post";
         }
         //무한빌드 원인
         //this.service.loading.hide();
