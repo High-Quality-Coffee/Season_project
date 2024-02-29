@@ -8,6 +8,7 @@ export class Component implements OnInit {
     public body: any;
     public pubdata: any;
     public duedates: any;
+    public files: any;
 
     constructor(
         public route: ActivatedRoute,
@@ -18,7 +19,22 @@ export class Component implements OnInit {
     public async ngOnInit() {
         await this.service.init();
         this.onLoad();
+        this.fileCheck();
+        await this.service.render();
     }
+
+    public async fileCheck() {
+        let body = {
+            email: window.localStorage.getItem('email'),
+            title: window.localStorage.getItem('title')
+        };
+        const { code, data } = await wiz.call("fileCheck", body);
+        if (code != 200)
+            return;
+        this.files = data;
+        await this.service.render();
+    }
+
 
     public async onLoad() {
         let email = {
@@ -41,7 +57,7 @@ export class Component implements OnInit {
         const { code, data } = await wiz.call("onLoading", this.body);
         this.items = data;
         await this.service.render();
-        if (coding != 200) return;
+        if (code != 200) return;
     }
 
     public async saveTitle(value) {

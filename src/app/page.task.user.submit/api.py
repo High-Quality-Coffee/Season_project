@@ -1,3 +1,4 @@
+import re
 import season
 import json
 import os
@@ -5,7 +6,7 @@ import datetime
 
 storagepath = wiz.config("config").STORAGE_PATH
 model = wiz.model('orm').use('user_info')
-
+assignmentdb = wiz.model("orm").use('assignment')
 
 def load():
     id = wiz.request.query('id',True)
@@ -23,9 +24,11 @@ def update():
     else:
         row = model.get(id=data["id"])
         model.update(data, id=data['id'])
+    
+    data['title']='"'+data['title']+'"'
+    assignmentdb.update(data, title=data['title'])
 
     files = wiz.request.files()
-    print(files)
     for item in files:
         fs = season.util.os.FileSystem(os.path.join(storagepath, data["category"], str(data["id"])))
         fs.write.file(item.filename, item)

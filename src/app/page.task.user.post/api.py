@@ -4,12 +4,23 @@ orm = wiz.model('orm')
 
 import datetime
 orm = wiz.model('orm')
+assignmentdb=wiz.model('orm').use('assignment')
 
 def load():
     title = wiz.request.query('title', True)
     row = orm.use('community').get(title=title)
     wiz.response.status(200, {
         "post": row
+    })
+
+def public_load():
+    title=wiz.request.query('title',True)
+    email=wiz.request.query('email',True)
+    title='"'+title+'"'
+    row=assignmentdb.get(title=title, email=email)
+    print(row)
+    wiz.response.status(200,{
+        "post":row
     })
 
 def create():

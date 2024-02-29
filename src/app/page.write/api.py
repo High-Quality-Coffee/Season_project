@@ -5,6 +5,7 @@ import datetime
 
 storagepath = wiz.config("config").STORAGE_PATH
 model = wiz.model('orm').use('community')
+db_assign=wiz.model('orm').use('assignment')
 
 
 def load():
@@ -20,10 +21,13 @@ def update():
         data['created'] = datetime.datetime.now()
         data['created']=data['created'].strftime("%Y-%m-%d")
         db = model.orm
+        db_a = db_assign.orm
         data['id'] = db.create(**data)
+        db_a.create(**data)
     else:
         row = model.get(id=data["id"])
         model.update(data, id=data['id'])
+        db_assign.update(data, id=data['id'])
 
     files = wiz.request.files()
     print(files)

@@ -37,4 +37,5 @@
                                     a.text-navy(style="color:#2D8BF8;", (click)="saveTitle(item.title)") {{item.title.length == 0 ? "제목없음" : item.title}}
                                 td.text-center.col-3 admin
                                 td.text-center.col-3 {{ duedates }}
-                                td.text-center.col-3(style="color:red;") 제출안함
+                                td.text-center.col-3(*ngIf="!files", style="color:red;") 제출안함
+                                td.text-center.col-3(*ngIf="files", style="color:blue;") 제출완료

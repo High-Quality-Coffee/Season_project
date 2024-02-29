@@ -172,8 +172,9 @@ th {
     }
 }
 
-.ck-editor__editable:read-only {
+.ck-editor__editable:not(.ck-focused) {
     min-height: 200px;
+    border: none;
 }
 
 .side {
