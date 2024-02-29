@@ -8,6 +8,7 @@ export class Component implements OnInit {
     public body: any;
     public pubdata: any;
     public duedates: any;
+    public files: any;
 
     constructor(
         public route: ActivatedRoute,
@@ -16,9 +17,24 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        this.onLoad();
         await this.service.init();
+        this.onLoad();
+        this.fileCheck();
+        await this.service.render();
     }
+
+    public async fileCheck() {
+        let body = {
+            email: window.localStorage.getItem('email'),
+            title: window.localStorage.getItem('title')
+        };
+        const { code, data } = await wiz.call("fileCheck", body);
+        if (code != 200)
+            return;
+        this.files = data;
+        await this.service.render();
+    }
+
 
     public async onLoad() {
         let email = {
@@ -26,7 +42,7 @@ export class Component implements OnInit {
         }
         const { code, data } = await wiz.call("onLoad", email);
         this.pubdata = data[0].assignName;
-        this.duedates=data[0].duedate;
+        this.duedates = data[0].duedate;
         //let list = JSON.parse(data[0].assignName);
         this.body = {
             list: this.pubdata
@@ -40,15 +56,17 @@ export class Component implements OnInit {
     public async onLoading() {
         const { code, data } = await wiz.call("onLoading", this.body);
         this.items = data;
-        if (coding != 200) return;
         await this.service.render();
+        if (code != 200) return;
     }
 
     public async saveTitle(value) {
         window.localStorage.setItem('title', value);
+        await this.service.render();
+        location.href = "/task/user/post";
     }
 
-    public async logout(val='open') {
+    public async logout(val = 'open') {
         if (val == "open") {
             document.getElementById("modal-score").style.display = "block";
         }
@@ -56,8 +74,12 @@ export class Component implements OnInit {
             document.getElementById("modal-score").style.display = "none";
         }
         else if (val === "logout") {
-            location.href="/login";
+            location.href = "/login";
         }
     }
 
+    public async movetoNext() {
+        await this.service.render();
+        location.href = "/result/user";
+    }
 }

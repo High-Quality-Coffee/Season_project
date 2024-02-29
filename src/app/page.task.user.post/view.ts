@@ -8,6 +8,7 @@ export class Component implements OnInit {
     public user;
     public category_list = [{ id: "notice", name: "공지사항" }, { id: "request", name: "요청사항" }, { id: "free", name: "자유게시판" }];
     public post = { id: "", category: "", content: "", user: {}, title: "" };
+    public post_public = { title: "", email: "", files: [] }
     public comment = { community_id: this.post.id, content: "" };
     public comments;
     public edit_comment: boolean = false;
@@ -19,8 +20,12 @@ export class Component implements OnInit {
     ) { }
 
     public async ngOnInit() {
-        // await this.service.init();
         this.load();
+        await this.service.init();
+        await this.service.render();
+        this.public_load();
+        await this.service.init();
+        await this.service.render();
     }
 
     public async load() {
@@ -41,7 +46,17 @@ export class Component implements OnInit {
         await this.service.render();
     }
 
-
+    public async public_load() {
+        this.post_public.title = window.localStorage.getItem('title');
+        this.post_public.email = window.localStorage.getItem('email');
+        const { code, data } = await wiz.call("public_load", { title: this.post_public.title, email: this.post_public.email });
+        if (code != 200)
+            alert("로드실패. 다시 시도해주세요.")
+        this.post_public = data.post;
+        this.post_public.files = JSON.parse(data.post.files.replace(/'/g, '"'));
+        console.log(this.post_public.files);
+        await this.service.render();
+    }
 
     public go(item) {
         const obj = {
@@ -68,4 +83,9 @@ export class Component implements OnInit {
         let { code, data } = await wiz.call('update', item)
         location.reload();
     };
+
+    public async movetoBack() {
+        await this.service.render();
+        location.href = "task/user/notice";
+    }
 } 

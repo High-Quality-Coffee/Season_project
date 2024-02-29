@@ -24,6 +24,7 @@ export class Component implements OnInit {
     public async ngOnInit() {
         this.onLoaD();
         await this.service.init();
+        await this.service.render();
     }
 
     public async onLoaD() {
@@ -50,6 +51,9 @@ export class Component implements OnInit {
     public async saveTitle(value, value_id) {
         window.localStorage.setItem('title', value);
         window.localStorage.setItem('id', value_id);
+        await this.service.init();
+        await this.service.render();
+        location.href="/task/admin/post";
     }
 
     public async logout(val='open') {

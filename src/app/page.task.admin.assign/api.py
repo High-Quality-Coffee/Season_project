@@ -8,7 +8,7 @@ import os
 userdb=wiz.model("orm").use("user_info")
 db=wiz.model("orm").use("community")
 reviewdb=wiz.model("orm").use("review")
-
+assignmentdb=wiz.model("orm").use("assignment")
 
 def assign():
     user=dict()
@@ -23,6 +23,7 @@ def assign():
     user["phone"]=wiz.request.query('phone', True)
     endPhoneNum=user["phone"][-4:] #휴대폰 번호 뒤 4자리
     user["assignName"]=wiz.request.query("assignName",True)
+    word_list = user["assignName"].strip('[]').split(',')
 
     user["interview"]=wiz.request.query('interview', True)
     date_obj = datetime.datetime.fromisoformat(user["interview"])
@@ -38,6 +39,11 @@ def assign():
 
     userdb.insert(user)
     reviewdb.insert(review)
+
+    for word in word_list:
+        user["title"]=word
+        assignmentdb.insert(user)
+
 
     return wiz.response.status(200, True)
 

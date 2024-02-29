@@ -6,6 +6,7 @@ h1 {
     padding: 0;
 }
 
+
 nav {
     display: inline-block;
     vertical-align: middle;
@@ -171,8 +172,9 @@ th {
     }
 }
 
-.ck-editor__editable {
+.ck-editor__editable:not(.ck-focused) {
     min-height: 200px;
+    border: none;
 }
 
 .side {
@@ -227,10 +229,16 @@ th {
     transition: var(--tblr-accordion-transition);
 }
 
-#editor {
-    width: 779px;
-    height: 400px;
+.hr.m-0:read-only{
+    border: 0;
 }
+
+#editor {
+    min-height: 200px;
+    border: none;
+}
+
+
 
 span.ml-3 {
     margin-left: 10px;

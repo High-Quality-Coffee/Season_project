@@ -5,7 +5,7 @@
             li
                 a(routerLink="/task/user/submit") 제출하기
             li
-                a(routerLink="/task/user/notice") 뒤로가기
+                a((click)="movetoBack()") 뒤로가기
     p 작성한 과제를 확인할 수 있는 페이지 입니다.
 
 .d-flex.justify-content-between(style="min-width:100%;")
@@ -27,14 +27,19 @@
                             li.fileList(*ngFor="let file of post.files;let i = index")
                                 a.fileName(href="/file/download/{{post.category}}/{{post.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
                 
-                .info-form.row.ml-3
+                .info-form.row.ml-3(*ngIf="post_public.files && post_public.files.length > 0")
                     .col-md-1
                         h4.m-0(style="line-height: 24px; padding-left: 1rem;") 제출파일
                     .col-md-11
                         ul.m-0
-                            li.fileList
-                                a.fileName
+                            li.fileList(*ngFor="let file of post_public.files;let i = index")
+                                a.fileName(href="/file/download/{{post_public.category}}/{{post_public.id}}/{{file}}/{{file}}?attatch=false" target="_blank") {{file}}
                 
+                .info-form.row.ml-3(*ngIf="post_public.files<=0")
+                    .col-md-1
+                        h4.m-0(style="line-height: 24px; padding-left: 1rem;") 제출파일
+
+
                 .hr.m-0
                 .editor-area.mt-4.mb-4
-                    textarea#editor {{post.content}}
+                    textarea#editor(readonly="") {{post.content}}

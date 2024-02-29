@@ -2,6 +2,7 @@ import json
 
 db=wiz.model("orm").use("community")
 userdb=wiz.model("orm").use("user_info")
+assignmentdb=wiz.model("orm").use("assignment")
 
 def onLoad():
     email=wiz.request.query("email",True)
@@ -23,3 +24,10 @@ def onLoading():
         rowsArr.append(db.get(title=ary))
 
     wiz.response.status(200,rowsArr)
+
+def fileCheck():
+    email=wiz.request.query('email',True)
+    title=wiz.request.query('title',True)
+    title='"'+title+'"'
+    row=assignmentdb.get(email=email,title=title).files
+    wiz.response.status(200,row)

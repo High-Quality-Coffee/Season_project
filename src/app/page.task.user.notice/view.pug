@@ -3,7 +3,7 @@
     nav
         ul
             li
-                a(routerLink="/result/user") 내 정보
+                a((click)="movetoNext()") 내 정보
             li
                 a((click)="logout()") 로그아웃
     p 해결해야 할 과제입니다.
@@ -34,7 +34,8 @@
                             tr(*ngFor="let item of items;let i = index")
                                 td.text-center {{ item.id }}
                                 td
-                                    a.text-navy(routerLink="/task/user/post", (click)="saveTitle(item.title)") {{item.title.length == 0 ? "제목없음" : item.title}}
+                                    a.text-navy(style="color:#2D8BF8;", (click)="saveTitle(item.title)") {{item.title.length == 0 ? "제목없음" : item.title}}
                                 td.text-center.col-3 admin
                                 td.text-center.col-3 {{ duedates }}
-                                td.text-center.col-3(style="color:red;") 제출안함
+                                td.text-center.col-3(*ngIf="!files", style="color:red;") 제출안함
+                                td.text-center.col-3(*ngIf="files", style="color:blue;") 제출완료

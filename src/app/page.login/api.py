@@ -18,10 +18,10 @@ def login():
         return wiz.response.status(401, "비밀번호를 확인해주세요")
 
     if user['role'] == "admin":
-        wiz.session.set(**user)
+        #wiz.session.set(**user)
         wiz.response.status(200,"admin")
     else:
-        wiz.session.set(**user)
+        #wiz.session.set(**user)
         wiz.response.status(200,"user")
 
     

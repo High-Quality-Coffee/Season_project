@@ -7,7 +7,7 @@ import { Menu } from '@wiz/libs/menu';
 export class Component implements OnInit {
     public title: any;
     public category_list = [{ id: "notice", name: "공지사항" }, { id: "request", name: "요청사항" }, { id: "free", name: "자유게시판" }];
-    public post = { id: "", title: "", writer: "", category: "", content: "", files: [] };
+    public post = { id: "", title: "", writer: "", category: "", content: "", files: [], email: "" };
     public editor;
     public file;
     public fd = new FormData();
@@ -53,6 +53,8 @@ export class Component implements OnInit {
 
     public async update() {
         this.service.loading.show();
+        this.post.title = window.localStorage.getItem("title");
+        this.post.email = window.localStorage.getItem("email");
         let post = this.post;
         this.fd.append("data", JSON.stringify(post));
         let url = wiz.url('update');
@@ -63,6 +65,10 @@ export class Component implements OnInit {
         }
         //무한빌드 원인
         //this.service.loading.hide();
+
+        // data = data.replace(/^\[|\]$/g, '');
+        // this.post.files = data.replace(/['"]/g, '');
+        //console.log(data);
         else alert("오류가 발생했습니다. 다시 시도해주세요.")
     }
 
